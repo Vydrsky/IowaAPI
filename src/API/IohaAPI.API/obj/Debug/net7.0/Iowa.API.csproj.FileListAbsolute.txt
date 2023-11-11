@@ -1,7 +1,0 @@
-D:\dev\IohaAPI\src\API\IohaAPI.API\obj\Debug\net7.0\Iowa.API.csproj.AssemblyReference.cache
-D:\dev\IohaAPI\src\API\IohaAPI.API\obj\Debug\net7.0\Iowa.API.GeneratedMSBuildEditorConfig.editorconfig
-D:\dev\IohaAPI\src\API\IohaAPI.API\obj\Debug\net7.0\Iowa.API.AssemblyInfoInputs.cache
-D:\dev\IohaAPI\src\API\IohaAPI.API\obj\Debug\net7.0\Iowa.API.AssemblyInfo.cs
-D:\dev\IohaAPI\src\API\IohaAPI.API\obj\Debug\net7.0\Iowa.API.csproj.CoreCompileInputs.cache
-D:\dev\IohaAPI\src\API\IohaAPI.API\obj\Debug\net7.0\Iowa.API.MvcApplicationPartsAssemblyInfo.cs
-D:\dev\IohaAPI\src\API\IohaAPI.API\obj\Debug\net7.0\Iowa.API.MvcApplicationPartsAssemblyInfo.cache
