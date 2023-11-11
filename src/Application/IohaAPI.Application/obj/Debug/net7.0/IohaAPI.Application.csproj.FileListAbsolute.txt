@@ -1,0 +1,11 @@
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\bin\Debug\net7.0\IohaAPI.Application.deps.json
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\bin\Debug\net7.0\IohaAPI.Application.dll
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\bin\Debug\net7.0\IohaAPI.Application.pdb
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\IohaAPI.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\IohaAPI.Application.AssemblyInfoInputs.cache
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\IohaAPI.Application.AssemblyInfo.cs
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\IohaAPI.Application.csproj.CoreCompileInputs.cache
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\IohaAPI.Application.dll
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\refint\IohaAPI.Application.dll
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\IohaAPI.Application.pdb
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\ref\IohaAPI.Application.dll

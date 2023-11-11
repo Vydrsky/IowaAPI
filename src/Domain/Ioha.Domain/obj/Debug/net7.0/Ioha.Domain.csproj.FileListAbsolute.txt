@@ -1,0 +1,11 @@
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\bin\Debug\net7.0\Ioha.Domain.deps.json
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\bin\Debug\net7.0\Ioha.Domain.dll
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\bin\Debug\net7.0\Ioha.Domain.pdb
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\obj\Debug\net7.0\Ioha.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\obj\Debug\net7.0\Ioha.Domain.AssemblyInfoInputs.cache
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\obj\Debug\net7.0\Ioha.Domain.AssemblyInfo.cs
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\obj\Debug\net7.0\Ioha.Domain.csproj.CoreCompileInputs.cache
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\obj\Debug\net7.0\Ioha.Domain.dll
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\obj\Debug\net7.0\refint\Ioha.Domain.dll
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\obj\Debug\net7.0\Ioha.Domain.pdb
+D:\dev\IohaAPI\src\Domain\Ioha.Domain\obj\Debug\net7.0\ref\Ioha.Domain.dll

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\IohaAPI.API.props" />
+</Project>

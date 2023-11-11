@@ -1,0 +1,15 @@
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\bin\Debug\net7.0\Iowa.Application.deps.json
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\bin\Debug\net7.0\Iowa.Application.dll
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\bin\Debug\net7.0\Iowa.Application.pdb
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\bin\Debug\net7.0\Iowa.Domain.dll
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\bin\Debug\net7.0\Iowa.Domain.pdb
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\Iowa.Application.csproj.AssemblyReference.cache
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\Iowa.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\Iowa.Application.AssemblyInfoInputs.cache
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\Iowa.Application.AssemblyInfo.cs
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\Iowa.Application.csproj.CoreCompileInputs.cache
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\Iowa.Application.csproj.CopyComplete
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\Iowa.Application.dll
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\refint\Iowa.Application.dll
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\Iowa.Application.pdb
+D:\dev\IohaAPI\src\Application\IohaAPI.Application\obj\Debug\net7.0\ref\Iowa.Application.dll
