@@ -1,17 +1,20 @@
 ﻿using Iowa.Domain.Common.Models;
 
-namespace Iowa.Domain.Game.ValueObjects;
+namespace Iowa.Domain.Card.ValueObjects;
 
-public sealed class CardId : ValueObject {
+public sealed class CardId : ValueObject
+{
     public Guid Id { get; }
 
-    private CardId(Guid id) {
+    private CardId(Guid id)
+    {
         Id = id;
     }
 
     public static CardId CreateUnique() => new(Guid.NewGuid());
 
-    public override IEnumerable<object> GetEqualityComponents() {
+    public override IEnumerable<object> GetEqualityComponents()
+    {
         yield return Id;
     }
 }

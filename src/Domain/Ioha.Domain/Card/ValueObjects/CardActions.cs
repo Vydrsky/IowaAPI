@@ -1,26 +1,30 @@
 ﻿using Iowa.Domain.Common.Models;
 
-namespace Iowa.Domain.Game.ValueObjects;
+namespace Iowa.Domain.Card.ValueObjects;
 
-public sealed class CardData : ValueObject {
+public sealed class CardActions : ValueObject
+{
     public long RewardValue { get; private set; }
     public long PunishmentValue { get; private set; }
     public short PunishmentPercentChance { get; private set; }
 
-    private CardData(long rewardValue, long punishmentValue, short punishmentPercentChance) {
+    private CardActions(long rewardValue, long punishmentValue, short punishmentPercentChance)
+    {
         RewardValue = rewardValue;
         PunishmentValue = punishmentValue;
         PunishmentPercentChance = punishmentPercentChance;
     }
 
-    public static CardData Create(long rewardValue, long punishmentValue, short punishmentPercentChance) {
+    public static CardActions Create(long rewardValue, long punishmentValue, short punishmentPercentChance)
+    {
         return new(
-            rewardValue, 
-            punishmentValue, 
+            rewardValue,
+            punishmentValue,
             punishmentPercentChance);
     }
 
-    public override IEnumerable<object> GetEqualityComponents() {
+    public override IEnumerable<object> GetEqualityComponents()
+    {
         yield return RewardValue;
         yield return PunishmentValue;
         yield return PunishmentPercentChance;
