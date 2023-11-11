@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Iowa.Domain
-build_property.ProjectDir = D:\dev\IohaAPI\src\Domain\Ioha.Domain\
+build_property.ProjectDir = D:\dev\IowaAPI\src\Domain\Ioha.Domain\

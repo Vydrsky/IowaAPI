@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fDhxC2u4wPGQerVHuMMHrgcw2uVxs/HLXwTHqY1E10ASqiEToIzvwsTsyFYHu3DwF8st1LG1A1J5ggiA9nROFg==",
+  "dgSpecHash": "a7FEh9euc/4eLZz17JEcm6YPW3h6Zj8xuyfzkf5i/nPfz3Sfi0Z95HyHS/xK1GaTIvMVBi1VAHZKPSOpLpTtFw==",
   "success": true,
-  "projectFilePath": "D:\\dev\\IohaAPI\\src\\Application\\IohaAPI.Application\\Iowa.Application.csproj",
+  "projectFilePath": "D:\\dev\\IowaAPI\\src\\Application\\IohaAPI.Application\\Iowa.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vydrs\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\vydrs\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

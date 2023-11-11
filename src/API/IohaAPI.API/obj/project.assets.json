@@ -611,11 +611,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\dev\\IohaAPI\\src\\API\\IohaAPI.API\\Iowa.API.csproj",
+      "projectUniqueName": "D:\\dev\\IowaAPI\\src\\API\\IohaAPI.API\\Iowa.API.csproj",
       "projectName": "Iowa.API",
-      "projectPath": "D:\\dev\\IohaAPI\\src\\API\\IohaAPI.API\\Iowa.API.csproj",
+      "projectPath": "D:\\dev\\IowaAPI\\src\\API\\IohaAPI.API\\Iowa.API.csproj",
       "packagesPath": "C:\\Users\\vydrs\\.nuget\\packages\\",
-      "outputPath": "D:\\dev\\IohaAPI\\src\\API\\IohaAPI.API\\obj\\",
+      "outputPath": "D:\\dev\\IowaAPI\\src\\API\\IohaAPI.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -636,8 +636,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\dev\\IohaAPI\\src\\Application\\IohaAPI.Application\\Iowa.Application.csproj": {
-              "projectPath": "D:\\dev\\IohaAPI\\src\\Application\\IohaAPI.Application\\Iowa.Application.csproj"
+            "D:\\dev\\IowaAPI\\src\\Application\\IohaAPI.Application\\Iowa.Application.csproj": {
+              "projectPath": "D:\\dev\\IowaAPI\\src\\Application\\IohaAPI.Application\\Iowa.Application.csproj"
             }
           }
         }

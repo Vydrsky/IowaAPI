@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\dev\\IohaAPI\\src\\Domain\\Ioha.Domain\\Iowa.Domain.csproj",
+      "projectUniqueName": "D:\\dev\\IowaAPI\\src\\Domain\\Ioha.Domain\\Iowa.Domain.csproj",
       "projectName": "Iowa.Domain",
-      "projectPath": "D:\\dev\\IohaAPI\\src\\Domain\\Ioha.Domain\\Iowa.Domain.csproj",
+      "projectPath": "D:\\dev\\IowaAPI\\src\\Domain\\Ioha.Domain\\Iowa.Domain.csproj",
       "packagesPath": "C:\\Users\\vydrs\\.nuget\\packages\\",
-      "outputPath": "D:\\dev\\IohaAPI\\src\\Domain\\Ioha.Domain\\obj\\",
+      "outputPath": "D:\\dev\\IowaAPI\\src\\Domain\\Ioha.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

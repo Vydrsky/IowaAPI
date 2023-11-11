@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\dev\\IohaAPI\\src\\Ioha.SqlServer.DataAccess\\Ioha.SqlServer.DataAccess\\Iowa.SqlServer.DataAccess.csproj",
+      "projectUniqueName": "D:\\dev\\IowaAPI\\src\\Ioha.SqlServer.DataAccess\\Ioha.SqlServer.DataAccess\\Iowa.SqlServer.DataAccess.csproj",
       "projectName": "Iowa.SqlServer.DataAccess",
-      "projectPath": "D:\\dev\\IohaAPI\\src\\Ioha.SqlServer.DataAccess\\Ioha.SqlServer.DataAccess\\Iowa.SqlServer.DataAccess.csproj",
+      "projectPath": "D:\\dev\\IowaAPI\\src\\Ioha.SqlServer.DataAccess\\Ioha.SqlServer.DataAccess\\Iowa.SqlServer.DataAccess.csproj",
       "packagesPath": "C:\\Users\\vydrs\\.nuget\\packages\\",
-      "outputPath": "D:\\dev\\IohaAPI\\src\\Ioha.SqlServer.DataAccess\\Ioha.SqlServer.DataAccess\\obj\\",
+      "outputPath": "D:\\dev\\IowaAPI\\src\\Ioha.SqlServer.DataAccess\\Ioha.SqlServer.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
