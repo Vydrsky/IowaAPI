@@ -12,11 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\IohaAPI.Application\Iowa.Application.csproj" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\..\Application\IohaAPI.Application\Iowa.Application.csproj" />
   </ItemGroup>
 
 </Project>

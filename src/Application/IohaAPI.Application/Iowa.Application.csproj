@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\Ioha.Domain\Iowa.Domain.csproj" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.1.1" />
+    <ProjectReference Include="..\..\Domain\Ioha.Domain\Iowa.Domain.csproj" />
   </ItemGroup>
 
 </Project>

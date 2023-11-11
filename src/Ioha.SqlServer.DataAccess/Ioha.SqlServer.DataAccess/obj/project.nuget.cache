@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "L5WFFwPpjv5SzIw8GJcJBJ1HO5oun6Lx//upiG4+whD+574k68SS6pMylxdIJLNWyCMTrzWbK5PVLBg775Sg4g==",
+  "dgSpecHash": "eNAEATOdQreEky4JmdBGjlU6d+x+0MuuIJ25R/SrHFQhgm7Po8UDt7eKeD4G+s0PvQCmtv7DCJvbO5Lo20zeJg==",
   "success": true,
   "projectFilePath": "D:\\dev\\IowaAPI\\src\\Ioha.SqlServer.DataAccess\\Ioha.SqlServer.DataAccess\\Iowa.SqlServer.DataAccess.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\vydrs\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\vydrs\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\vydrs\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

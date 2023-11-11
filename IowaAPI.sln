@@ -29,9 +29,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{5992E1A3-3CCC-465D-8377-C246112CA2DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iowa.UnitTests", "tests\UnitTests\Iowa.UnitTests\Iowa.UnitTests.csproj", "{4911A1F1-EECB-4F11-92FE-7DB5411963D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iowa.UnitTests", "tests\UnitTests\Iowa.UnitTests\Iowa.UnitTests.csproj", "{4911A1F1-EECB-4F11-92FE-7DB5411963D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iowa.IntegrationTests", "tests\IntegrationTests\Iowa.IntegrationTests\Iowa.IntegrationTests.csproj", "{CF4AC39A-EE5D-49C8-BF5C-9477FB97D956}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iowa.IntegrationTests", "tests\IntegrationTests\Iowa.IntegrationTests\Iowa.IntegrationTests.csproj", "{CF4AC39A-EE5D-49C8-BF5C-9477FB97D956}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
