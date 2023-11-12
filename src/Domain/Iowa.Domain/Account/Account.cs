@@ -6,14 +6,14 @@ using Iowa.Domain.User.ValueObjects;
 namespace Iowa.Domain.Account;
 
 public sealed class Account : AggregateRoot<AccountId> {
-    public long Balance { get; }
-    public long NetProfit { get; }
-    public UserId UserId { get; }
-    public GameId GameId { get; }
+    public long Balance { get; private set; }
+    public long PreviousBalance { get; private set; }
+    public UserId UserId { get; private set; }
+    public GameId GameId { get; private set; }
 
-    private Account(AccountId id, long balance, long netProfit, UserId userId, GameId gameId) : base(id) {
+    private Account(AccountId id, long balance, long previousBalance, UserId userId, GameId gameId) : base(id) {
         Balance = balance;
-        NetProfit = netProfit;
+        PreviousBalance = previousBalance;
         UserId = userId;
         GameId = gameId;
     }

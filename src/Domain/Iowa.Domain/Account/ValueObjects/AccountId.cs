@@ -11,6 +11,8 @@ public sealed class AccountId : ValueObject {
 
     public static AccountId CreateUnique() => new(Guid.NewGuid());
 
+    public static AccountId Create(Guid id) => new(id);
+
     public override IEnumerable<object> GetEqualityComponents() {
         yield return Id;
     }

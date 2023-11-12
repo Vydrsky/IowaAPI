@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\IohaAPI.Application\Iowa.Application.csproj" />
+    <ProjectReference Include="..\..\Application\Iowa.Application\Iowa.Application.csproj" />
   </ItemGroup>
 
 </Project>
