@@ -11,7 +11,7 @@ public sealed class Card : ValueObject
     public short PunishmentPercentChance { get; private set; }
     public long Result { get; private set; }
 
-    private Card(CardType type, long rewardValue, long punishmentValue, short punishmentPercentChance, long result) : base(id)
+    private Card(CardType type, long rewardValue, long punishmentValue, short punishmentPercentChance, long result)
     {
         Type = type;
         RewardValue = rewardValue;

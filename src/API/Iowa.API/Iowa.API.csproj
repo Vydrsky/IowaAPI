@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>627dfef6-52af-45ce-98d7-e0d25ca1d7da</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,11 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Application\Iowa.Application\Iowa.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Iowa.Infrastructure\Iowa.Infrastructure.csproj" />
+    <ProjectReference Include="..\Iowa.Contracts\Iowa.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

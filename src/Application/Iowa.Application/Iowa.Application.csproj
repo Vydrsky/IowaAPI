@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\API\Iowa.Contracts\Iowa.Contracts.csproj" />
     <ProjectReference Include="..\..\Domain\Iowa.Domain\Iowa.Domain.csproj" />
   </ItemGroup>
 
