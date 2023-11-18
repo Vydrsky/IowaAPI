@@ -1,5 +1,5 @@
-﻿using Iowa.Application.Interfaces.Authentication;
-using Iowa.Application.Interfaces.Services;
+﻿using Iowa.Application.Common.Interfaces.Authentication;
+using Iowa.Application.Common.Interfaces.Services;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Iowa.Infrastructure.Authentication;
 
-public class JwtTokenGenerator : IJwtTokenGenerator {
+public class JwtTokenGenerator : ITokenGenerator {
 
     private readonly IDateTimeProvider _dateTimeProvider;
     private readonly JwtSettings _jwtSettings;

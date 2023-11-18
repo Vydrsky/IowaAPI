@@ -1,4 +1,4 @@
-﻿using Iowa.Application.Exceptions.Base;
+﻿using Iowa.Application.Common.Exceptions.Base;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Net;
@@ -27,13 +27,13 @@ public class ExceptionHandlingMiddleware : IMiddleware {
 
     private async Task HandleExceptionAsync(HttpContext context, Exception ex) {
         ProblemDetails problemDetails;
-        if (ex is IServiceException) {
+        if (ex is IApplicationException) {
             problemDetails = _problemDetailsFactory
                 .CreateProblemDetails(
                 context,
-                statusCode: (int)((IServiceException)ex).StatusCode,
-                title: ((IServiceException)ex).Title,
-                detail: ((IServiceException)ex).Detail);
+                statusCode: (int)((IApplicationException)ex).StatusCode,
+                title: ((IApplicationException)ex).Title,
+                detail: ((IApplicationException)ex).Detail);
         }
         else {
             problemDetails = _problemDetailsFactory
@@ -47,7 +47,7 @@ public class ExceptionHandlingMiddleware : IMiddleware {
         var json = JsonSerializer.Serialize(problemDetails);
 
         context.Response.ContentType = "application/problem+json";
-        context.Response.StatusCode = (int)problemDetails.Status;
+        context.Response.StatusCode = problemDetails.Status.GetValueOrDefault();
 
         await context.Response.WriteAsync(json);
     }

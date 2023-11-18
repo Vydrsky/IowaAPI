@@ -1,4 +1,4 @@
-﻿namespace Iowa.Infrastructure.Authentication; 
+﻿namespace Iowa.Infrastructure.Authentication;
 
 public class JwtSettings {
     public const string SectionName = "JwtSettings";

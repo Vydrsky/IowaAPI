@@ -3,7 +3,7 @@
 public abstract class ValueObject : IEquatable<ValueObject> {
     public abstract IEnumerable<object> GetEqualityComponents();
     public override bool Equals(object? obj) {
-        if(obj == null || obj.GetType() != GetType()) {
+        if (obj == null || obj.GetType() != GetType()) {
             return false;
         }
 

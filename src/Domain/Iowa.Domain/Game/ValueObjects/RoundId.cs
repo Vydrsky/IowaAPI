@@ -2,8 +2,7 @@
 
 namespace Iowa.Domain.Game.ValueObjects;
 
-public sealed class RoundId : ValueObject
-{
+public sealed class RoundId : ValueObject {
     public Guid Id { get; }
 
     private RoundId(Guid id) {

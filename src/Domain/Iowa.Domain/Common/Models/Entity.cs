@@ -3,8 +3,7 @@
 public abstract class Entity<TId> : IEquatable<Entity<TId>> where TId : notnull {
     public TId Id { get; private set; }
 
-    public Entity(TId id)
-    {
+    public Entity(TId id) {
         Id = id;
     }
 

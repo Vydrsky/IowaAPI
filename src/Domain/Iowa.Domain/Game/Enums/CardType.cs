@@ -1,7 +1,6 @@
 ﻿namespace Iowa.Domain.Game.Enums;
 
-public enum CardType
-{
+public enum CardType {
     A,
     B,
     C,

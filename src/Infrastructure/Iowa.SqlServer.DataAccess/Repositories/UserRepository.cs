@@ -1,4 +1,4 @@
-﻿using Iowa.Application.Interfaces.Persistence;
+﻿using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.User;
 
 namespace Iowa.Infrastructure.Persistence;

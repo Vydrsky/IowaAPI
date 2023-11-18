@@ -1,10 +1,8 @@
 ﻿using Iowa.Domain.Common.Models;
-using Iowa.Domain.Game.ValueObjects;
 
 namespace Iowa.Domain.Evaluation.ValueObjects;
 
-public sealed class EvaluationId : ValueObject
-{
+public sealed class EvaluationId : ValueObject {
     public Guid Id { get; }
 
     private EvaluationId(Guid id) {

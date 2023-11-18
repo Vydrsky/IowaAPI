@@ -20,8 +20,8 @@ public sealed class Account : AggregateRoot<AccountId> {
 
     public static Account Create(long balance, long netProfit, UserId userId, GameId gameId) {
         return new(
-            AccountId.CreateUnique(), 
-            balance, 
+            AccountId.CreateUnique(),
+            balance,
             netProfit,
             userId,
             gameId);

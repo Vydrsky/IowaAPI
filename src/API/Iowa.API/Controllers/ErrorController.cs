@@ -1,5 +1,5 @@
 ﻿using Iowa.API.Controllers.Base;
-using Iowa.Application.Exceptions;
+using Iowa.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Iowa.API.Controllers; 
@@ -7,12 +7,12 @@ namespace Iowa.API.Controllers;
 public class ErrorController : IowaController{
 
     [HttpGet("service")]
-    public void ThrowServiceError() {
-        throw new SampleException();
+    public async Task ThrowServiceError() {
+        await Task.Run(() => throw new SampleException());
     }
 
     [HttpGet("unknown")]
-    public void ThorwUnknnownError() {
-        throw new Exception();
+    public async Task ThorwUnknnownError() {
+        await Task.Run(() => throw new Exception());
     }
 }
