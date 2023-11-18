@@ -1,4 +1,5 @@
-﻿using Iowa.Application.Interfaces.Authentication;
+﻿using Iowa.Application.Exceptions;
+using Iowa.Application.Interfaces.Authentication;
 using Iowa.Application.Interfaces.Persistence;
 using Iowa.Application.Interfaces.Services;
 using Iowa.Contracts.Requests;
@@ -18,15 +19,12 @@ public class AuthenticationService : IAuthenticationService {
     }
 
     public async Task<AuthenticationResponse> Authenticate(AuthenticationRequest request) {
-        if (_userRepository.GetUserById(request.UserId) is not null) {
-            //restore state
-            throw new Exception("User already exists");
+        User? user = await _userRepository.GetUserByCodeAsync(request.UserCode);
+
+        if (user is null) {
+            user = User.Create(request.UserCode, null, null);
+            await _userRepository.AddUserAsync(user);
         }
-
-        //else create user
-        var user = User.Create(request.UserCode, null, null);
-
-        _userRepository.AddUser(user);
 
         var token = await _jwtTokenGenerator.GenerateToken(request.UserCode);
 

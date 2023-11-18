@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -17,7 +18,6 @@
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:8000"
-    },
-    "$schema": "https://json.schemastore.org/launchsettings.json"
+    }
   }
 }

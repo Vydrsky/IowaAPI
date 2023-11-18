@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iowa.Infrastructure", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iowa.SqlServer.DataAccess", "src\Infrastructure\Iowa.SqlServer.DataAccess\Iowa.SqlServer.DataAccess.csproj", "{96FC7B8F-642A-464B-B008-C6265AEA4EBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iowa.Contracts", "src\API\Iowa.Contracts\Iowa.Contracts.csproj", "{A8AA7BC5-2C76-4CBA-A1E1-DA6C4ED408EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Iowa.Contracts", "src\API\Iowa.Contracts\Iowa.Contracts.csproj", "{A8AA7BC5-2C76-4CBA-A1E1-DA6C4ED408EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

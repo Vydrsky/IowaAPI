@@ -1,5 +1,4 @@
 ﻿using Iowa.API.Controllers.Base;
-using Iowa.Application.Interfaces.Authentication;
 using Iowa.Application.Interfaces.Services;
 using Iowa.Contracts.Requests;
 using Iowa.Contracts.Responses;
@@ -17,8 +16,10 @@ public class AuthController : IowaController{
 
     [HttpPost]
     [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
     public async Task<ActionResult<AuthenticationResponse>> Authenticate(AuthenticationRequest request) {
         var response = await _authenticationService.Authenticate(request);
+
         return Ok(response);
     }
 }
