@@ -1,5 +1,4 @@
 ﻿using Iowa.Application.Authentication.Results;
-using Iowa.Application.Common.Exceptions;
 using Iowa.Application.Common.Interfaces.Authentication;
 using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.Account.ValueObjects;
@@ -23,7 +22,6 @@ public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, A
 
     public async Task<AuthenticateResult> Handle(AuthenticateCommand request, CancellationToken cancellationToken)
     {
-        throw new SampleException();
         User? user = await _userRepository.GetUserByCodeAsync(request.UserCode);
 
         if (user is null)

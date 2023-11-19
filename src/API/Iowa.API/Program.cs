@@ -14,7 +14,7 @@ builder.Services
 var app = builder.Build();
 
 //MIDDLEWARE PIPELINE
-app.UseMiddleware<UnknownExceptionHandlingMiddleware>();
+app.UseMiddleware<UnknownExceptionHandlingMiddleware>(); //Ensure first
 app.UseMiddleware<ApplicationExceptionHandlingMiddleware>();
 app.UseMiddleware<ValidationExceptionHandlingMiddleware>();
 
@@ -22,6 +22,9 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

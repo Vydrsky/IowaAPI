@@ -6,10 +6,12 @@ using Iowa.Contracts.Responses;
 using Mapster;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Iowa.API.Controllers;
 
+[AllowAnonymous]
 public class AuthController : IowaController{
 
     private readonly ISender _mediator;
