@@ -29,7 +29,9 @@ public static class DependencyInjection
     }
 
     private static IServiceCollection AddMiddlewares(this IServiceCollection services) {
-        services.AddScoped<ExceptionHandlingMiddleware>();
+        services.AddScoped<UnknownExceptionHandlingMiddleware>();
+        services.AddScoped<ApplicationExceptionHandlingMiddleware>();
+        services.AddScoped<ValidationExceptionHandlingMiddleware>();
         return services;
     }
 

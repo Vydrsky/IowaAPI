@@ -14,7 +14,9 @@ builder.Services
 var app = builder.Build();
 
 //MIDDLEWARE PIPELINE
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<UnknownExceptionHandlingMiddleware>();
+app.UseMiddleware<ApplicationExceptionHandlingMiddleware>();
+app.UseMiddleware<ValidationExceptionHandlingMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI();
