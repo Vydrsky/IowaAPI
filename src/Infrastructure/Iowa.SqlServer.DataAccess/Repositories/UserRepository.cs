@@ -1,5 +1,6 @@
 ﻿using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.User;
+using Iowa.Domain.User.ValueObjects;
 
 namespace Iowa.Infrastructure.Persistence;
 
@@ -16,5 +17,11 @@ public class UserRepository : IUserRepository {
         return await Task.Run(() => {
             return users.Where(user => user.UserCode == code).FirstOrDefault();
             });
+    }
+
+    public async Task<User?> GetUserByIdAsync(UserId id) {
+        return await Task.Run(() => {
+            return users.Where(user => user.Id == id).FirstOrDefault();
+        });
     }
 }

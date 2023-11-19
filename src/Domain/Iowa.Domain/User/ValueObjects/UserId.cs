@@ -10,6 +10,7 @@ public sealed class UserId : ValueObject {
     }
 
     public static UserId CreateUnique() => new(Guid.NewGuid());
+    public static UserId Create(Guid id) => new(id);
 
     public override IEnumerable<object> GetEqualityComponents() {
         yield return Id;

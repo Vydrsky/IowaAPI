@@ -3,5 +3,5 @@
 namespace Iowa.Application.Authentication.Results; 
 
 public record AuthenticateResult(
-    User user,
+    User User,
     string Token);

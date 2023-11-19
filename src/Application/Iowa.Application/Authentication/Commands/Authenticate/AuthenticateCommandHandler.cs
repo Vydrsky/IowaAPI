@@ -1,6 +1,8 @@
 ﻿using Iowa.Application.Authentication.Results;
 using Iowa.Application.Common.Interfaces.Authentication;
 using Iowa.Application.Common.Interfaces.Persistence;
+using Iowa.Domain.Account.ValueObjects;
+using Iowa.Domain.Game.ValueObjects;
 using Iowa.Domain.User;
 using MediatR;
 
@@ -24,7 +26,7 @@ public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, A
 
         if (user is null)
         {
-            user = User.Create(request.UserCode, null, null);
+            user = User.Create(request.UserCode, AccountId.CreateUnique(), GameId.CreateUnique());
             await _userRepository.AddUserAsync(user);
         }
 

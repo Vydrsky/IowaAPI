@@ -41,7 +41,7 @@ public class ExceptionHandlingMiddleware : IMiddleware {
                 context,
                 statusCode: (int)HttpStatusCode.InternalServerError,
                 title: "Internal Server Error",
-                detail: "An unidentifed error has occured.");
+                detail: "An unexpected error has occured.");
         }
 
         var json = JsonSerializer.Serialize(problemDetails);
