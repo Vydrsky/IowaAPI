@@ -1,7 +1,7 @@
 ﻿using Iowa.Domain.Common.Models;
-using Iowa.Domain.Game.ValueObjects;
+using Iowa.Domain.GameAggregate.ValueObjects;
 
-namespace Iowa.Domain.Game.Entities;
+namespace Iowa.Domain.GameAggregate.Entities;
 
 public sealed class Round : Entity<RoundId> {
     public short RoundNumber { get; private set; }

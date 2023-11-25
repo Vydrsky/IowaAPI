@@ -1,9 +1,9 @@
 ﻿using Iowa.Application.Authentication.Results;
 using Iowa.Application.Common.Interfaces.Authentication;
 using Iowa.Application.Common.Interfaces.Persistence;
-using Iowa.Domain.Account.ValueObjects;
-using Iowa.Domain.Game.ValueObjects;
-using Iowa.Domain.User;
+using Iowa.Domain.AccountAggregate.ValueObjects;
+using Iowa.Domain.GameAggregate.ValueObjects;
+using Iowa.Domain.UserAggregate;
 using MediatR;
 
 namespace Iowa.Application.Authentication.Commands.Authenticate;

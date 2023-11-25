@@ -1,6 +1,6 @@
 ﻿using Iowa.Domain.Common.Models;
 
-namespace Iowa.Domain.User.ValueObjects;
+namespace Iowa.Domain.UserAggregate.ValueObjects;
 
 public sealed class UserId : ValueObject {
     public Guid Id { get; }

@@ -1,6 +1,6 @@
 ﻿using Iowa.Domain.Common.Models;
 
-namespace Iowa.Domain.Game.ValueObjects;
+namespace Iowa.Domain.GameAggregate.ValueObjects;
 
 public sealed class RoundId : ValueObject {
     public Guid Id { get; }

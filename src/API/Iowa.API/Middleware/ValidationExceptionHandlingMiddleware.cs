@@ -31,7 +31,7 @@ public class ValidationExceptionHandlingMiddleware : IMiddleware {
         problemDetails.Status = (int)HttpStatusCode.BadRequest;
         problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
         problemDetails.Title = ex.Message;
-        problemDetails.Extensions.Add("traceId", Activity.Current?.Id ?? context?.TraceIdentifier);
+        problemDetails.Extensions.Add("traceId", Activity.Current?.Id ?? context.TraceIdentifier);
 
         var json = JsonSerializer.Serialize(problemDetails);
 

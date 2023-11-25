@@ -1,7 +1,6 @@
-﻿using Iowa.Domain.Account.ValueObjects;
-using Iowa.Domain.Common.Models;
+﻿using Iowa.Domain.Common.Models;
 
-namespace Iowa.Domain.Game.ValueObjects;
+namespace Iowa.Domain.GameAggregate.ValueObjects;
 
 public sealed class GameId : ValueObject {
     public Guid Id { get; }

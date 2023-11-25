@@ -1,4 +1,4 @@
-﻿using Iowa.Domain.User;
+﻿using Iowa.Domain.UserAggregate;
 
 namespace Iowa.Application.Authentication.Results; 
 

@@ -1,7 +1,7 @@
 ﻿using Iowa.Domain.Common.Models;
-using Iowa.Domain.Game.Enums;
+using Iowa.Domain.GameAggregate.Enums;
 
-namespace Iowa.Domain.Game.ValueObjects;
+namespace Iowa.Domain.GameAggregate.ValueObjects;
 
 public sealed class Card : ValueObject {
     public CardType Type { get; private set; }

@@ -1,6 +1,6 @@
 ﻿using Iowa.Domain.Common.Models;
 
-namespace Iowa.Domain.Evaluation.ValueObjects;
+namespace Iowa.Domain.EvaluationAggregate.ValueObjects;
 
 public sealed class EvaluationId : ValueObject {
     public Guid Id { get; }

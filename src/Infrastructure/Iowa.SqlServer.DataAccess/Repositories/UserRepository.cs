@@ -1,6 +1,6 @@
 ﻿using Iowa.Application.Common.Interfaces.Persistence;
-using Iowa.Domain.User;
-using Iowa.Domain.User.ValueObjects;
+using Iowa.Domain.UserAggregate;
+using Iowa.Domain.UserAggregate.ValueObjects;
 
 namespace Iowa.Infrastructure.Persistence;
 

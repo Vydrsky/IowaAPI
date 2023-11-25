@@ -1,7 +1,7 @@
-﻿using Iowa.Domain.Account.ValueObjects;
+﻿using Iowa.Domain.AccountAggregate.ValueObjects;
 using Iowa.Domain.Common.Models;
-using Iowa.Domain.Evaluation.ValueObjects;
-using Iowa.Domain.User.ValueObjects;
+using Iowa.Domain.EvaluationAggregate.ValueObjects;
+using Iowa.Domain.UserAggregate.ValueObjects;
 
 namespace Iowa.Domain.Evaluation;
 

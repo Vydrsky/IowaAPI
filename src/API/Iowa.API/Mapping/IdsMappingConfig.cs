@@ -1,6 +1,6 @@
-﻿using Iowa.Domain.Account.ValueObjects;
-using Iowa.Domain.Game.ValueObjects;
-using Iowa.Domain.User.ValueObjects;
+﻿using Iowa.Domain.AccountAggregate.ValueObjects;
+using Iowa.Domain.GameAggregate.ValueObjects;
+using Iowa.Domain.UserAggregate.ValueObjects;
 using Mapster;
 
 namespace Iowa.API.Mapping; 

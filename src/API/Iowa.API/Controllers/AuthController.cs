@@ -3,7 +3,6 @@ using Iowa.Application.Authentication.Commands.Authenticate;
 using Iowa.Application.Authentication.Results;
 using Iowa.Contracts.Requests;
 using Iowa.Contracts.Responses;
-using Mapster;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Iowa.API.Controllers;
 
 [AllowAnonymous]
-public class AuthController : IowaController{
+public class AuthController : IowaController {
 
     private readonly ISender _mediator;
     private readonly IMapper _mapper;
