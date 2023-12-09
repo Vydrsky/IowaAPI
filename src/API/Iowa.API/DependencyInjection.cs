@@ -1,21 +1,28 @@
-﻿using Iowa.API.Middleware;
+﻿using System.Reflection;
+
+using Iowa.API.Middleware;
+
 using Mapster;
+
 using MapsterMapper;
-using System.Reflection;
+
+using Microsoft.OpenApi.Models;
 
 namespace Iowa.API;
 
-public static class DependencyInjection
-{
-    public static IServiceCollection AddPresentation(this IServiceCollection services)
-    {
+public static class DependencyInjection {
+    public static IServiceCollection AddPresentation(this IServiceCollection services) {
         AddMapping(services);
         AddMiddlewares(services);
         AddLogging(services);
 
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(options => {
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            options.IncludeXmlComments(xmlPath);
+        });
 
         return services;
     }

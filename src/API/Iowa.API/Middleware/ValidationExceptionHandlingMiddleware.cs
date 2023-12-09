@@ -1,23 +1,30 @@
-﻿using Iowa.Application.Common.Exceptions.Base;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net;
 using System.Text.Json;
 
+using Iowa.Application.Common.Exceptions.Base;
+
+using Microsoft.AspNetCore.Mvc;
+
 namespace Iowa.API.Middleware;
 
-public class ValidationExceptionHandlingMiddleware : IMiddleware {
+public class ValidationExceptionHandlingMiddleware : IMiddleware
+{
     private readonly ILogger<ValidationExceptionHandlingMiddleware> _logger;
 
-    public ValidationExceptionHandlingMiddleware(ILogger<ValidationExceptionHandlingMiddleware> logger) {
+    public ValidationExceptionHandlingMiddleware(ILogger<ValidationExceptionHandlingMiddleware> logger)
+    {
         _logger = logger;
     }
 
-    public async Task InvokeAsync(HttpContext context, RequestDelegate next) {
-        try {
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+    {
+        try
+        {
             await next(context);
         }
-        catch (Exception ex) {
+        catch (Exception ex)
+        {
             var exception = ex as ValidationException;
             if (exception == null) throw;
             _logger.LogError(ex, ex.Message);
@@ -25,7 +32,8 @@ public class ValidationExceptionHandlingMiddleware : IMiddleware {
         }
     }
 
-    private async Task HandleValidationExceptionAsync(HttpContext context, ValidationException ex) {
+    private async Task HandleValidationExceptionAsync(HttpContext context, ValidationException ex)
+    {
 
         var problemDetails = new ValidationProblemDetails(ex.Errors);
         problemDetails.Status = (int)HttpStatusCode.BadRequest;

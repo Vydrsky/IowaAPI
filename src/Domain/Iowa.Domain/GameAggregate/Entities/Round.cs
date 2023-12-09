@@ -3,23 +3,23 @@ using Iowa.Domain.GameAggregate.ValueObjects;
 
 namespace Iowa.Domain.GameAggregate.Entities;
 
-public sealed class Round : Entity<RoundId> {
+public sealed class Round : Entity<RoundId>
+{
     public short RoundNumber { get; private set; }
     public long PreviousBalance { get; private set; }
     public long Total { get; private set; }
-    public GameId GameId { get; private set; }
 
-    private Round(RoundId id, long previousBalance, long total, GameId gameID) : base(id) {
-        GameId = gameID;
+    private Round(RoundId id, long previousBalance, long total) : base(id)
+    {
         PreviousBalance = previousBalance;
         Total = total;
     }
 
-    public static Round Create(long previousBalance, long total, GameId gameId) {
+    public static Round Create(long previousBalance, long total)
+    {
         return new(
             RoundId.CreateUnique(),
             previousBalance,
-            total,
-            gameId);
+            total);
     }
 }

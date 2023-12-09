@@ -1,26 +1,32 @@
-﻿using Iowa.Application.Common.Interfaces.Authentication;
-using Iowa.Application.Common.Interfaces.Services;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+using Iowa.Application.Common.Interfaces.Authentication;
+using Iowa.Application.Common.Interfaces.Services;
+
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+
 namespace Iowa.Infrastructure.Authentication;
 
-public class JwtTokenGenerator : ITokenGenerator {
+public class JwtTokenGenerator : ITokenGenerator
+{
 
     private readonly IDateTimeProvider _dateTimeProvider;
     private readonly JwtSettings _jwtSettings;
 
-    public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtSettings) {
+    public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtSettings)
+    {
         _dateTimeProvider = dateTimeProvider;
         _jwtSettings = jwtSettings.Value;
     }
 
-    public Task<string> GenerateToken(string userCode) {
+    public Task<string> GenerateToken(string userCode)
+    {
         return
-        Task.Run(() => {
+        Task.Run(() =>
+        {
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.UniqueName, userCode)
             };

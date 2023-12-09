@@ -16,4 +16,9 @@
     <ProjectReference Include="..\..\Domain\Iowa.Domain\Iowa.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Evaluation\" />
+    <Folder Include="Account\" />
+  </ItemGroup>
+
 </Project>

@@ -1,15 +1,36 @@
 ﻿using Iowa.API.Controllers.Base;
+using Iowa.Application.User.Queries.GetUser;
+using Iowa.Contracts.User.Responses;
 using Iowa.Domain.UserAggregate;
+
+using MapsterMapper;
+
+using MediatR;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace Iowa.API.Controllers;
 
-public class UserController : IowaController {
+public class UserController : IowaController
+{
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> GetUsers() {
-        return await Task.Run(() => {
-            return Ok(Array.Empty<string>());
-        });
+    private readonly ISender _mediator;
+    private readonly IMapper _mapper;
+
+    public UserController(ISender mediator, IMapper mapper)
+    {
+        _mediator = mediator;
+        _mapper = mapper;
+    }
+
+    /// <summary>
+    /// Returns only an existing user.
+    /// </summary>
+    [HttpGet("{id}")]
+    public async Task<ActionResult<UserResponse>> GetUser([FromRoute] Guid id)
+    {
+        var result = await _mediator.Send(new GetUserQuery(id));
+
+        return Ok(_mapper.Map<UserAggregate, UserResponse>(result));
     }
 }

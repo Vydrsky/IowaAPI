@@ -1,24 +1,31 @@
-﻿using Iowa.Application.Common.Exceptions.Base;
+﻿using System.Text.Json;
+
+using Iowa.Application.Common.Exceptions.Base;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using System.Text.Json;
 
 namespace Iowa.API.Middleware;
 
-public class ApplicationExceptionHandlingMiddleware : IMiddleware {
+public class ApplicationExceptionHandlingMiddleware : IMiddleware
+{
     private readonly ILogger<ApplicationExceptionHandlingMiddleware> _logger;
     private readonly ProblemDetailsFactory _problemDetailsFactory;
 
-    public ApplicationExceptionHandlingMiddleware(ILogger<ApplicationExceptionHandlingMiddleware> logger, ProblemDetailsFactory problemDetailsFactory) {
+    public ApplicationExceptionHandlingMiddleware(ILogger<ApplicationExceptionHandlingMiddleware> logger, ProblemDetailsFactory problemDetailsFactory)
+    {
         _logger = logger;
         _problemDetailsFactory = problemDetailsFactory;
     }
 
-    public async Task InvokeAsync(HttpContext context, RequestDelegate next) {
-        try {
+    public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+    {
+        try
+        {
             await next(context);
         }
-        catch (Exception ex) {
+        catch (Exception ex)
+        {
             var exception = ex as IApplicationException;
             if (exception == null) throw;
 
@@ -27,7 +34,8 @@ public class ApplicationExceptionHandlingMiddleware : IMiddleware {
         }
     }
 
-    private async Task HandleApplicationExceptionAsync(HttpContext context, IApplicationException ex) {
+    private async Task HandleApplicationExceptionAsync(HttpContext context, IApplicationException ex)
+    {
         ProblemDetails problemDetails = _problemDetailsFactory
             .CreateProblemDetails(
             context,

@@ -2,18 +2,21 @@
 
 namespace Iowa.Domain.GameAggregate.ValueObjects;
 
-public sealed class RoundId : ValueObject {
-    public Guid Id { get; }
+public sealed class RoundId : ValueObject
+{
+    public Guid Value { get; }
 
-    private RoundId(Guid id) {
-        Id = id;
+    private RoundId(Guid id)
+    {
+        Value = id;
     }
 
     public static RoundId CreateUnique() => new(Guid.NewGuid());
 
     public static RoundId Create(Guid id) => new(id);
 
-    public override IEnumerable<object> GetEqualityComponents() {
-        yield return Id;
+    public override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Value;
     }
 }

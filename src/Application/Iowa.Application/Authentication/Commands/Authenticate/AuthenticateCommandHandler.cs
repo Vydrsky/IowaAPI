@@ -4,6 +4,7 @@ using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.AccountAggregate.ValueObjects;
 using Iowa.Domain.GameAggregate.ValueObjects;
 using Iowa.Domain.UserAggregate;
+
 using MediatR;
 
 namespace Iowa.Application.Authentication.Commands.Authenticate;
@@ -22,11 +23,11 @@ public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, A
 
     public async Task<AuthenticateResult> Handle(AuthenticateCommand request, CancellationToken cancellationToken)
     {
-        User? user = await _userRepository.GetUserByCodeAsync(request.UserCode);
+        UserAggregate? user = await _userRepository.GetUserByCodeAsync(request.UserCode);
 
         if (user is null)
         {
-            user = User.Create(request.UserCode, AccountId.CreateUnique(), GameId.CreateUnique());
+            user = UserAggregate.Create(request.UserCode, AccountId.CreateUnique(), GameId.CreateUnique());
             await _userRepository.AddUserAsync(user);
         }
 

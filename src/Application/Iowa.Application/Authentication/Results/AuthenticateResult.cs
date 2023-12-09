@@ -1,7 +1,7 @@
 ﻿using Iowa.Domain.UserAggregate;
 
-namespace Iowa.Application.Authentication.Results; 
+namespace Iowa.Application.Authentication.Results;
 
 public record AuthenticateResult(
-    User User,
+    UserAggregate User,
     string Token);

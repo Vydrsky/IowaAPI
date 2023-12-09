@@ -2,18 +2,21 @@
 
 namespace Iowa.Domain.EvaluationAggregate.ValueObjects;
 
-public sealed class EvaluationId : ValueObject {
-    public Guid Id { get; }
+public sealed class EvaluationId : ValueObject
+{
+    public Guid Value { get; }
 
-    private EvaluationId(Guid id) {
-        Id = id;
+    private EvaluationId(Guid id)
+    {
+        Value = id;
     }
 
     public static EvaluationId CreateUnique() => new(Guid.NewGuid());
 
     public static EvaluationId Create(Guid id) => new(id);
 
-    public override IEnumerable<object> GetEqualityComponents() {
-        yield return Id;
+    public override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Value;
     }
 }
