@@ -1,4 +1,5 @@
 ﻿using Iowa.Domain.AccountAggregate.ValueObjects;
+using Iowa.Domain.EvaluationAggregate.ValueObjects;
 using Iowa.Domain.GameAggregate.ValueObjects;
 using Iowa.Domain.UserAggregate.ValueObjects;
 
@@ -16,6 +17,10 @@ public class IdsMappingConfig : IRegister
         config.NewConfig<GameId, Guid>()
             .MapWith(src => src.Value);
         config.NewConfig<RoundId, Guid>()
+            .MapWith(src => src.Value);
+        config.NewConfig<EvaluationId, Guid>()
+            .MapWith(src => src.Value);
+        config.NewConfig<AccountId, Guid>()
             .MapWith(src => src.Value);
     }
 }

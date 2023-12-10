@@ -1,5 +1,6 @@
 ﻿using System.Text;
 
+using Iowa.Application._Common.Interfaces.Persistence;
 using Iowa.Application.Common.Interfaces.Authentication;
 using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Application.Common.Interfaces.Services;
@@ -7,7 +8,6 @@ using Iowa.Infrastructure.Authentication;
 using Iowa.Infrastructure.Common;
 using Iowa.Infrastructure.Persistence;
 using Iowa.SqlServer.DataAccess.Repositories;
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,9 +21,8 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddAuth(services, configuration);
-        services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-        services.AddSingleton<IUserRepository, UserRepository>();
-        services.AddSingleton<IGameRepository, GameRepository>();
+        AddRepositories(services);
+        AddServices(services);
 
         return services;
     }
@@ -55,6 +54,24 @@ public static class DependencyInjection
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret))
                 };
             });
+
+        return services;
+    }
+
+    private static IServiceCollection AddRepositories(IServiceCollection services)
+    {
+        services.AddSingleton<IUserRepository, UserRepository>();
+        services.AddSingleton<IGameRepository, GameRepository>();
+        services.AddSingleton<IAccountRepository, AccountRepository>();
+        services.AddSingleton<IEvaluationRepository, EvaluationRepository>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddServices(IServiceCollection services)
+    {
+        services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
         return services;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.UserAggregate;
 using Iowa.Domain.UserAggregate.ValueObjects;
-using Iowa.SqlServer.DataAccess.Repositories;
+using Iowa.SqlServer.DataAccess.Repositories.Base;
 
 namespace Iowa.Infrastructure.Persistence;
 

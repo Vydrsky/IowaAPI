@@ -2,6 +2,7 @@
 using Iowa.Domain.GameAggregate;
 using Iowa.Domain.GameAggregate.Entities;
 using Iowa.Domain.GameAggregate.ValueObjects;
+using Iowa.SqlServer.DataAccess.Repositories.Base;
 
 namespace Iowa.SqlServer.DataAccess.Repositories;
 
@@ -11,7 +12,9 @@ public class GameRepository : GenericRepository<GameAggregate,GameId>,IGameRepos
     {
         await Task.Run(() =>
         {
-            _data.Where(game => game.Id.Value == gameId).Single().AddNewRound(round);
+            var result = _data.Where(game => game.Id.Value == gameId).SingleOrDefault().EnsureExists();
+
+            result.AddNewRound(round);
         });
     }
 
@@ -19,7 +22,9 @@ public class GameRepository : GenericRepository<GameAggregate,GameId>,IGameRepos
     {
         await Task.Run(() =>
         {
-            _data.Where(game => game.Id.Value == id).SingleOrDefault();
+            var result = _data.Where(game => game.Id.Value == id).SingleOrDefault().EnsureExists();
+
+            result.CleanGameState();
         });
     }
 }

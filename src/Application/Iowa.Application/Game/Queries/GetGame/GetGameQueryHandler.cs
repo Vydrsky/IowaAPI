@@ -1,5 +1,4 @@
-﻿using Iowa.Application.Common.Exceptions;
-using Iowa.Application.Common.Interfaces.Persistence;
+﻿using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.GameAggregate;
 using Iowa.Domain.GameAggregate.ValueObjects;
 
@@ -18,8 +17,6 @@ public class GetGameQueryHandler : IRequestHandler<GetGameQuery, GameAggregate>
 
     public async Task<GameAggregate> Handle(GetGameQuery request, CancellationToken cancellationToken)
     {
-        var game = await _gameRepository.GetByIdAsync(GameId.Create(request.Id));
-
-        return game is null ? throw new EntityNotFoundException() : game;
+        return await _gameRepository.GetByIdAsync(GameId.Create(request.Id));
     }
 }

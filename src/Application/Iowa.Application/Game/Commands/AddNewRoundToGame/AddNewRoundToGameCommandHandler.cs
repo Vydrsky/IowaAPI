@@ -1,5 +1,4 @@
-﻿using Iowa.Application.Common.Exceptions;
-using Iowa.Application.Common.Interfaces.Persistence;
+﻿using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.GameAggregate.Entities;
 using Iowa.Domain.GameAggregate.ValueObjects;
 
@@ -19,10 +18,6 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
     public async Task Handle(AddNewRoundToGameCommand request, CancellationToken cancellationToken)
     {
         var game = await _gameRepository.GetByIdAsync(GameId.Create(request.GameId));
-        if(game is null)
-        {
-            throw new EntityNotFoundException();
-        }
 
         if (game.RoundLimitReached())
         {
@@ -32,13 +27,13 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
             return;
         }
 
-        var total = CalculateTotalByCard(request);
+        var total = CalculateTotal(request);
         await _gameRepository.AddRoundToGameAsync(request.GameId, Round.Create(request.PreviousBalance, total));
 
         //signal account to change
     }
 
-    private long CalculateTotalByCard(AddNewRoundToGameCommand request)
+    private long CalculateTotal(AddNewRoundToGameCommand request)
     {
         Random rnd = new Random();
         var roll = rnd.Next(0, 100);
