@@ -1,12 +1,12 @@
-﻿using Iowa.Domain.GameAggregate;
+﻿using Iowa.Application._Common.Interfaces.Persistence.Base;
+using Iowa.Domain.GameAggregate;
 using Iowa.Domain.GameAggregate.Entities;
+using Iowa.Domain.GameAggregate.ValueObjects;
 
 namespace Iowa.Application.Common.Interfaces.Persistence;
 
-public interface IGameRepository
+public interface IGameRepository : IGenericRepository<GameAggregate,GameId>
 {
-    Task<GameAggregate?> GetGameByIdAsync(Guid id);
-    Task AddGameAsync(GameAggregate game);
     Task AddRoundToGameAsync(Guid gameId, Round round);
     Task RestartGame(Guid id);
 }

@@ -1,28 +1,17 @@
 ﻿using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.GameAggregate;
 using Iowa.Domain.GameAggregate.Entities;
+using Iowa.Domain.GameAggregate.ValueObjects;
 
 namespace Iowa.SqlServer.DataAccess.Repositories;
 
-public class GameRepository : IGameRepository
+public class GameRepository : GenericRepository<GameAggregate,GameId>,IGameRepository
 {
-    private List<GameAggregate> _games = new List<GameAggregate>();
-
-    public async Task<GameAggregate?> GetGameByIdAsync(Guid id)
-    {
-        return await Task.Run(() => _games.Where(game => game.Id.Value == id).FirstOrDefault());
-    }
-    
-    public async Task AddGameAsync(GameAggregate game)
-    {
-        await Task.Run(() => _games.Add(game));
-    }
-
     public async Task AddRoundToGameAsync(Guid gameId, Round round)
     {
         await Task.Run(() =>
         {
-            _games.Where(game => game.Id.Value == gameId).Single().AddNewRound(round);
+            _data.Where(game => game.Id.Value == gameId).Single().AddNewRound(round);
         });
     }
 
@@ -30,7 +19,7 @@ public class GameRepository : IGameRepository
     {
         await Task.Run(() =>
         {
-            _games.Where(game => game.Id.Value == id).SingleOrDefault().;
+            _data.Where(game => game.Id.Value == id).SingleOrDefault();
         });
     }
 }

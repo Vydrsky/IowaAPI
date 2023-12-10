@@ -28,7 +28,7 @@ public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, A
         if (user is null)
         {
             user = UserAggregate.Create(request.UserCode, AccountId.CreateUnique(), GameId.CreateUnique());
-            await _userRepository.AddUserAsync(user);
+            await _userRepository.AddAsync(user);
         }
 
         var token = await _jwtTokenGenerator.GenerateToken(request.UserCode);

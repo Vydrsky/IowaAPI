@@ -1,6 +1,7 @@
 ﻿using Iowa.Application.Common.Exceptions;
 using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.GameAggregate.Entities;
+using Iowa.Domain.GameAggregate.ValueObjects;
 
 using MediatR;
 
@@ -17,7 +18,7 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
 
     public async Task Handle(AddNewRoundToGameCommand request, CancellationToken cancellationToken)
     {
-        var game = await _gameRepository.GetGameByIdAsync(request.GameId);
+        var game = await _gameRepository.GetByIdAsync(GameId.Create(request.GameId));
         if(game is null)
         {
             throw new EntityNotFoundException();

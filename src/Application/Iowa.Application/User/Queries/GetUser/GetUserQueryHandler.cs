@@ -18,7 +18,7 @@ public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserAggregate>
 
     public async Task<UserAggregate> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetUserByIdAsync(UserId.Create(request.Id));
+        var user = await _userRepository.GetByIdAsync(UserId.Create(request.Id));
 
         return user is null ? throw new EntityNotFoundException() : user;
     }
