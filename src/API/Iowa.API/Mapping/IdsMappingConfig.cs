@@ -18,8 +18,8 @@ public class IdsMappingConfig : IRegister
             .MapWith(src => src.Value);
         config.NewConfig<RoundId, Guid>()
             .MapWith(src => src.Value);
-        config.NewConfig<EvaluationId, Guid>()
-            .MapWith(src => src.Value);
+        //config.NewConfig<EvaluationId, Guid>()
+        //    .MapWith(src => src.Value);
         config.NewConfig<AccountId, Guid>()
             .MapWith(src => src.Value);
     }

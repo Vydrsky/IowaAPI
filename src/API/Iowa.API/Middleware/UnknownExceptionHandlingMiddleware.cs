@@ -26,18 +26,33 @@ public class UnknownExceptionHandlingMiddleware : IMiddleware
         catch (Exception ex)
         {
             _logger.LogError(ex, ex.Message);
-            await HandleUknownExceptionAsync(context);
+            await HandleUknownExceptionAsync(context, ex);
         }
     }
 
-    private async Task HandleUknownExceptionAsync(HttpContext context)
+    private async Task HandleUknownExceptionAsync(HttpContext context, Exception ex)
     {
-        ProblemDetails problemDetails = _problemDetailsFactory
-            .CreateProblemDetails(
-            context,
-            statusCode: (int)HttpStatusCode.InternalServerError,
-            title: "Internal Server Error",
-            detail: "An unknown error has occured. Please try again later.");
+        ProblemDetails problemDetails;
+        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+        {
+            while (ex.InnerException != null) ex = ex.InnerException;
+
+            problemDetails = _problemDetailsFactory
+                .CreateProblemDetails(
+                context,
+                statusCode: (int)HttpStatusCode.InternalServerError,
+                title: "Internal Server Error",
+                detail: ex.Message);
+        }
+        else
+        {
+             problemDetails = _problemDetailsFactory
+                .CreateProblemDetails(
+                context,
+                statusCode: (int)HttpStatusCode.InternalServerError,
+                title: "Internal Server Error",
+                detail: "An unknown error has occured. Please try again later.");
+        }
 
         var json = JsonSerializer.Serialize(problemDetails);
 
