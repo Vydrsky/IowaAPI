@@ -27,6 +27,7 @@ public class GenericSqlServerRepository<TAggregate, TId> : IGenericRepository<TA
     public async Task AddAsync(TAggregate aggregate)
     {
         await Task.Run(() => _dbContext.Set<TAggregate>().Add(aggregate));
+        await _dbContext.SaveChangesAsync();
     }
 
     public async Task UpdateAsync(TAggregate aggregate)

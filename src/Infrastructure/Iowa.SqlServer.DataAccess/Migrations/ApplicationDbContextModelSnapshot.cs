@@ -108,8 +108,7 @@ namespace Iowa.SqlServer.DataAccess.Migrations
                     b.OwnsMany("Iowa.Domain.GameAggregate.Entities.Round", "Rounds", b1 =>
                         {
                             b1.Property<Guid>("Id")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("RoundId");
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<Guid>("GameId")
                                 .HasColumnType("uniqueidentifier");

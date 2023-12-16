@@ -1,6 +1,7 @@
 ﻿using Iowa.Domain.AccountAggregate.ValueObjects;
 using Iowa.Domain.Common.Models;
 using Iowa.Domain.GameAggregate.ValueObjects;
+using Iowa.Domain.UserAggregate.Events;
 using Iowa.Domain.UserAggregate.ValueObjects;
 
 namespace Iowa.Domain.UserAggregate;
@@ -20,11 +21,15 @@ public sealed class UserAggregate : AggregateRoot<UserId>
 
     public static UserAggregate Create(string userCode, AccountId accountId, GameId gameId)
     {
-        return new(
+        var user = new UserAggregate(
             UserId.CreateUnique(),
             userCode,
             accountId,
             gameId);
+
+        user.AddDomainEvent(new UserCreated(user));
+
+        return user;
     }
 
 #pragma warning disable CS8618

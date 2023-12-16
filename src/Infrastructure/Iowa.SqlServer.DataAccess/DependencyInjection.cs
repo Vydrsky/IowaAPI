@@ -1,6 +1,7 @@
 ﻿using Iowa.Application._Common.Interfaces.Persistence;
 using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Infrastructure.Persistence;
+using Iowa.SqlServer.DataAccess.Interceptors;
 using Iowa.SqlServer.DataAccess.Repositories;
 
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +16,10 @@ public static class DependencyInjection
     {
         services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer();
+            options.UseSqlServer("Server=localhost;Database=Iowa;User Id=sa;Password=Simmto569!;Encrypt=false");
         });
         AddRepositories(services);
+        AddInterceptors(services);
 
         return services;
     }
@@ -28,6 +30,13 @@ public static class DependencyInjection
         services.AddScoped<IGameRepository, GameRepository>();
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<IEvaluationRepository, EvaluationRepository>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddInterceptors(IServiceCollection services)
+    {
+        services.AddScoped<PublishDomainEventsInterceptor>();
 
         return services;
     }

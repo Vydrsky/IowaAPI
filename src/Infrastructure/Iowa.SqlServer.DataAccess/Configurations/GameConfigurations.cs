@@ -46,7 +46,6 @@ public class GameConfigurations : IEntityTypeConfiguration<GameAggregate>
             rb.WithOwner().HasForeignKey("GameId");
             rb.HasKey("Id", "GameId");
             rb.Property(r => r.Id)
-                .HasColumnName("RoundId")
                 .ValueGeneratedNever()
                 .HasConversion(
                     id => id.Value,

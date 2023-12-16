@@ -1,9 +1,13 @@
 ﻿namespace Iowa.Domain.Common.Models;
 
-public abstract class Entity<TId> : IEquatable<Entity<TId>> where TId : notnull
+public abstract class Entity<TId> : IEquatable<Entity<TId>>, IHasDomainEvents where TId : ValueObject
 {
+    private readonly List<IDomainEvent> _domainEvents = new();
+
     public TId Id { get; private set; }
 
+    public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.ToList().AsReadOnly();
+    
     public Entity(TId id)
     {
         Id = id;
@@ -32,6 +36,16 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>> where TId : notnull
     public bool Equals(Entity<TId>? other)
     {
         return Equals((object?)other);
+    }
+
+    public void AddDomainEvent(IDomainEvent domainEvent)
+    {
+        _domainEvents.Add(domainEvent);
+    }
+
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
     }
 
 #pragma warning disable CS8618

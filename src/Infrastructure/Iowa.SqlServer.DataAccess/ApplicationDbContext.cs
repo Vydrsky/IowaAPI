@@ -1,9 +1,11 @@
 ﻿using System.Reflection;
 
 using Iowa.Domain.Account;
+using Iowa.Domain.Common.Models;
 using Iowa.Domain.Evaluation;
 using Iowa.Domain.GameAggregate;
 using Iowa.Domain.UserAggregate;
+using Iowa.SqlServer.DataAccess.Interceptors;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +13,11 @@ namespace Iowa.SqlServer.DataAccess;
 
 public class ApplicationDbContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions options) : base(options) { }
+    private readonly PublishDomainEventsInterceptor _publishDomainEventsInterceptor;
+    public ApplicationDbContext(DbContextOptions options, PublishDomainEventsInterceptor publishDomainEventsInterceptor) : base(options)
+    {
+        _publishDomainEventsInterceptor = publishDomainEventsInterceptor;
+    }
 
     public DbSet<GameAggregate> Games { get; set; }
     public DbSet<UserAggregate> Users { get; set; }
@@ -20,7 +26,16 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        modelBuilder
+            .Ignore<List<IDomainEvent>>()
+            .ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
         base.OnModelCreating(modelBuilder);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.AddInterceptors(_publishDomainEventsInterceptor);
+        base.OnConfiguring(optionsBuilder);
     }
 }
