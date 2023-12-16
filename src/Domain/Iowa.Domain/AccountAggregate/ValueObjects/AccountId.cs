@@ -19,4 +19,11 @@ public sealed class AccountId : ValueObject
     {
         yield return Value;
     }
+
+#pragma warning disable CS8618
+    private AccountId()
+    {
+
+    }
+#pragma warning restore CS8618
 }

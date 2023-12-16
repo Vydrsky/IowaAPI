@@ -5,6 +5,9 @@ using Iowa.SqlServer.DataAccess.Repositories.Base;
 
 namespace Iowa.SqlServer.DataAccess.Repositories;
 
-public class EvaluationRepository : GenericRepository<EvaluationAggregate, EvaluationId>, IEvaluationRepository
+public class EvaluationRepository : GenericSqlServerRepository<EvaluationAggregate, EvaluationId>, IEvaluationRepository
 {
+    public EvaluationRepository(ApplicationDbContext context) : base(context)
+    {
+    }
 }

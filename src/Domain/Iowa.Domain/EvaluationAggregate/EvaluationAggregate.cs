@@ -29,4 +29,11 @@ public sealed class EvaluationAggregate : AggregateRoot<EvaluationId>
             isPassed,
             evaluationDate);
     }
+
+#pragma warning disable CS8618
+    private EvaluationAggregate()
+    {
+
+    }
+#pragma warning restore CS8618
 }

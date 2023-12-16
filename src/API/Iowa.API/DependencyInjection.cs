@@ -6,8 +6,6 @@ using Mapster;
 
 using MapsterMapper;
 
-using Microsoft.OpenApi.Models;
-
 namespace Iowa.API;
 
 public static class DependencyInjection {

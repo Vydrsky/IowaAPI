@@ -45,4 +45,11 @@ public sealed class GameAggregate : AggregateRoot<GameId>
     {
         return _rounds.Count >= 100;
     }
+
+#pragma warning disable CS8618
+    private GameAggregate()
+    {
+
+    }
+#pragma warning restore CS8618
 }

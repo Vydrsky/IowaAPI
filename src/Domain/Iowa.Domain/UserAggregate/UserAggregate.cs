@@ -26,4 +26,11 @@ public sealed class UserAggregate : AggregateRoot<UserId>
             accountId,
             gameId);
     }
+
+#pragma warning disable CS8618
+    private UserAggregate()
+    {
+
+    }
+#pragma warning restore CS8618
 }

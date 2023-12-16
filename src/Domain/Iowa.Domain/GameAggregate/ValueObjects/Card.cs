@@ -30,4 +30,11 @@ public sealed class Card : ValueObject
         yield return PunishmentValue;
         yield return PunishmentPercentChance;
     }
+
+#pragma warning disable CS8618
+    private Card()
+    {
+
+    }
+#pragma warning restore CS8618
 }

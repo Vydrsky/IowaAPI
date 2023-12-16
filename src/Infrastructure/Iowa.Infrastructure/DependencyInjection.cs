@@ -5,9 +5,11 @@ using Iowa.Application.Common.Interfaces.Authentication;
 using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Application.Common.Interfaces.Services;
 using Iowa.Infrastructure.Authentication;
-using Iowa.Infrastructure.Common;
 using Iowa.Infrastructure.Persistence;
+using Iowa.Infrastructure.Services;
+using Iowa.SqlServer.DataAccess;
 using Iowa.SqlServer.DataAccess.Repositories;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +23,9 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddAuth(services, configuration);
-        AddRepositories(services);
         AddServices(services);
+
+        services.AddSqlServerPersistance();
 
         return services;
     }
@@ -58,15 +61,7 @@ public static class DependencyInjection
         return services;
     }
 
-    private static IServiceCollection AddRepositories(IServiceCollection services)
-    {
-        services.AddSingleton<IUserRepository, UserRepository>();
-        services.AddSingleton<IGameRepository, GameRepository>();
-        services.AddSingleton<IAccountRepository, AccountRepository>();
-        services.AddSingleton<IEvaluationRepository, EvaluationRepository>();
 
-        return services;
-    }
 
     private static IServiceCollection AddServices(IServiceCollection services)
     {

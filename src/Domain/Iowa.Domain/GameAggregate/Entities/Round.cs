@@ -22,4 +22,11 @@ public sealed class Round : Entity<RoundId>
             previousBalance,
             total);
     }
+
+#pragma warning disable CS8618
+    private Round()
+    {
+
+    }
+#pragma warning restore CS8618
 }

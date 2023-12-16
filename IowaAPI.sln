@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DD14495B-EA05-41B2-92EA-C952B6900AD9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8D0F2363-8C80-4DF1-B67E-7BCA80D184D1}"
+	ProjectSection(SolutionItems) = preProject
+		src\Infrastructure\Iowa.SqlServer.DataAccess\ApplicationDbContext.cs = src\Infrastructure\Iowa.SqlServer.DataAccess\ApplicationDbContext.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{EE9B6430-5D7A-4B90-9C86-1BCB4FE1371B}"
 EndProject

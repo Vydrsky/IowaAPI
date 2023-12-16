@@ -6,13 +6,17 @@ using Iowa.SqlServer.DataAccess.Repositories.Base;
 
 namespace Iowa.SqlServer.DataAccess.Repositories;
 
-public class GameRepository : GenericRepository<GameAggregate,GameId>,IGameRepository
+public class GameRepository : GenericSqlServerRepository<GameAggregate,GameId>,IGameRepository
 {
+    public GameRepository(ApplicationDbContext context) : base(context)
+    {
+    }
+
     public async Task AddRoundToGameAsync(Guid gameId, Round round)
     {
         await Task.Run(() =>
         {
-            var result = _data.Where(game => game.Id.Value == gameId).SingleOrDefault().EnsureExists();
+            var result = _dbContext.Games.Where(game => game.Id.Value == gameId).SingleOrDefault().EnsureExists();
 
             result.AddNewRound(round);
         });
@@ -22,7 +26,7 @@ public class GameRepository : GenericRepository<GameAggregate,GameId>,IGameRepos
     {
         await Task.Run(() =>
         {
-            var result = _data.Where(game => game.Id.Value == id).SingleOrDefault().EnsureExists();
+            var result = _dbContext.Games.Where(game => game.Id.Value == id).SingleOrDefault().EnsureExists();
 
             result.CleanGameState();
         });

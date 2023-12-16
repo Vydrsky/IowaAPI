@@ -5,6 +5,9 @@ using Iowa.SqlServer.DataAccess.Repositories.Base;
 
 namespace Iowa.SqlServer.DataAccess.Repositories;
 
-public class AccountRepository : GenericRepository<AccountAggregate, AccountId>, IAccountRepository
+public class AccountRepository : GenericSqlServerRepository<AccountAggregate, AccountId>, IAccountRepository
 {
+    public AccountRepository(ApplicationDbContext context) : base(context)
+    {
+    }
 }
