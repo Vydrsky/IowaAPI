@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Iowa.Domain.Evaluation;
 using Iowa.Domain.EvaluationAggregate.ValueObjects;
 using Iowa.Domain.AccountAggregate.ValueObjects;
 using Iowa.Domain.UserAggregate.ValueObjects;
+using Iowa.Domain.EvaluationAggregate;
 
 namespace Iowa.SqlServer.DataAccess.Configurations;
 

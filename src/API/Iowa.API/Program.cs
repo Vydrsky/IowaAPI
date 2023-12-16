@@ -1,4 +1,5 @@
 using Iowa.API;
+using Iowa.API.Extensions;
 using Iowa.API.Middleware;
 using Iowa.Application;
 using Iowa.Infrastructure;
@@ -14,6 +15,8 @@ builder.Services
 var app = builder.Build();
 
 //MIDDLEWARE PIPELINE
+app.AddDbSeeding();
+
 app.UseMiddleware<UnknownExceptionHandlingMiddleware>(); //Ensure first
 app.UseMiddleware<ApplicationExceptionHandlingMiddleware>();
 app.UseMiddleware<ValidationExceptionHandlingMiddleware>();

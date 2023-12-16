@@ -1,4 +1,4 @@
-﻿using Iowa.Domain.Account;
+﻿using Iowa.Domain.AccountAggregate;
 
 using MediatR;
 

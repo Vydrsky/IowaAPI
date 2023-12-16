@@ -1,7 +1,7 @@
 ﻿using Iowa.API.Controllers.Base;
 using Iowa.Application.Account.Queries.GetAccount;
 using Iowa.Contracts.Account.Responses;
-using Iowa.Domain.Account;
+using Iowa.Domain.AccountAggregate;
 
 using MapsterMapper;
 using MediatR;

@@ -1,6 +1,7 @@
 ﻿using Iowa.Domain.AccountAggregate.ValueObjects;
 using Iowa.Domain.Common.Models;
 using Iowa.Domain.GameAggregate.Entities;
+using Iowa.Domain.GameAggregate.Events;
 using Iowa.Domain.GameAggregate.ValueObjects;
 using Iowa.Domain.UserAggregate.ValueObjects;
 
@@ -21,18 +22,21 @@ public sealed class GameAggregate : AggregateRoot<GameId>
         AccountId = accountID;
     }
 
-    public static GameAggregate Create(UserId userId, AccountId accountID)
+    public static GameAggregate Create(UserId userId, AccountId accountID, GameId? id = null)
     {
-        return new(
-            GameId.CreateUnique(),
+        var game = new GameAggregate(
+            id ?? GameId.CreateUnique(),
             userId,
             accountID);
+
+        game.AddDomainEvent(new GameCreated(game));
+
+        return game;
+        
     }
 
     public void AddNewRound(Round round)
     {
-        //Domain validation
-
         _rounds.Add(round);
     }
 

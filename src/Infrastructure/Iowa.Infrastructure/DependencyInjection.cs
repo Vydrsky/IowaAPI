@@ -1,14 +1,13 @@
 ﻿using System.Text;
 
 using Iowa.Application._Common.Interfaces.Persistence;
+using Iowa.Application._Common.Interfaces.Services;
 using Iowa.Application.Common.Interfaces.Authentication;
-using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Application.Common.Interfaces.Services;
 using Iowa.Infrastructure.Authentication;
-using Iowa.Infrastructure.Persistence;
 using Iowa.Infrastructure.Services;
 using Iowa.SqlServer.DataAccess;
-using Iowa.SqlServer.DataAccess.Repositories;
+using Iowa.SqlServer.DataAccess.Extensions;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -66,6 +65,7 @@ public static class DependencyInjection
     private static IServiceCollection AddServices(IServiceCollection services)
     {
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+        services.AddScoped<IDomainEventPublisher, DomainEventPublisher>();
 
         return services;
     }

@@ -8,7 +8,7 @@ namespace Iowa.Infrastructure.Persistence;
 
 public class UserRepository : GenericSqlServerRepository<UserAggregate,UserId>,IUserRepository
 {
-    public UserRepository(ApplicationDbContext context) : base(context)
+    public UserRepository(ApplicationDbContext context) : base(context.Users)
     {
     }
 
@@ -16,7 +16,7 @@ public class UserRepository : GenericSqlServerRepository<UserAggregate,UserId>,I
     {
         return await Task.Run(() =>
         {
-            return _dbContext.Users.Where(user => user.UserCode == code).FirstOrDefault();
+            return _dbSet.Where(user => user.UserCode == code).FirstOrDefault();
         });
     }
 }

@@ -1,9 +1,10 @@
-﻿using Iowa.Domain.AccountAggregate.ValueObjects;
+﻿using Iowa.Domain.AccountAggregate.Events;
+using Iowa.Domain.AccountAggregate.ValueObjects;
 using Iowa.Domain.Common.Models;
 using Iowa.Domain.GameAggregate.ValueObjects;
 using Iowa.Domain.UserAggregate.ValueObjects;
 
-namespace Iowa.Domain.Account;
+namespace Iowa.Domain.AccountAggregate;
 
 public sealed class AccountAggregate : AggregateRoot<AccountId>
 {
@@ -20,14 +21,18 @@ public sealed class AccountAggregate : AggregateRoot<AccountId>
         GameId = gameId;
     }
 
-    public static AccountAggregate Create(long balance, long netProfit, UserId userId, GameId gameId)
+    public static AccountAggregate Create(long balance, long netProfit, UserId userId, GameId gameId, AccountId? id = null)
     {
-        return new(
-            AccountId.CreateUnique(),
+        var account = new AccountAggregate(
+            id ?? AccountId.CreateUnique(),
             balance,
             netProfit,
             userId,
             gameId);
+
+        account.AddDomainEvent(new AccountCreated(account));
+
+        return account;
     }
 #pragma warning disable CS8618
     private AccountAggregate()

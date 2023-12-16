@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 
-using Iowa.Domain.Account;
+using Iowa.Domain.AccountAggregate;
 using Iowa.Domain.Common.Models;
-using Iowa.Domain.Evaluation;
+using Iowa.Domain.EvaluationAggregate;
 using Iowa.Domain.GameAggregate;
 using Iowa.Domain.UserAggregate;
 using Iowa.SqlServer.DataAccess.Interceptors;
@@ -22,7 +22,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<GameAggregate> Games { get; set; }
     public DbSet<UserAggregate> Users { get; set; }
     public DbSet<AccountAggregate> Accounts { get; set; }
-    public DbSet<EvaluationAggregate> Evaulations { get; set; }
+    public DbSet<EvaluationAggregate> Evaluations { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

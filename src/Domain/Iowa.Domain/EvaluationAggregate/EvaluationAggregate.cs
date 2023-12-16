@@ -1,9 +1,10 @@
 ﻿using Iowa.Domain.AccountAggregate.ValueObjects;
 using Iowa.Domain.Common.Models;
+using Iowa.Domain.EvaluationAggregate.Events;
 using Iowa.Domain.EvaluationAggregate.ValueObjects;
 using Iowa.Domain.UserAggregate.ValueObjects;
 
-namespace Iowa.Domain.Evaluation;
+namespace Iowa.Domain.EvaluationAggregate;
 
 public sealed class EvaluationAggregate : AggregateRoot<EvaluationId>
 {
@@ -20,14 +21,18 @@ public sealed class EvaluationAggregate : AggregateRoot<EvaluationId>
         EvaluationDate = EvaluationDate;
     }
 
-    public static EvaluationAggregate Create(UserId userId, AccountId accountId, bool isPassed, DateTime evaluationDate)
+    public static EvaluationAggregate Create(UserId userId, AccountId accountId, bool isPassed, DateTime evaluationDate, EvaluationId? id = null)
     {
-        return new(
-            EvaluationId.CreateUnique(),
+        var evaluation = new EvaluationAggregate(
+            id ?? EvaluationId.CreateUnique(),
             userId,
             accountId,
             isPassed,
             evaluationDate);
+
+        evaluation.AddDomainEvent(new EvaluationCreated(evaluation));
+
+        return evaluation;
     }
 
 #pragma warning disable CS8618

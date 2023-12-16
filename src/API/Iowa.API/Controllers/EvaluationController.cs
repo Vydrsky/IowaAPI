@@ -1,7 +1,7 @@
 ﻿using Iowa.API.Controllers.Base;
 using Iowa.Application.Evaluation.Queries;
 using Iowa.Contracts.Evaluation.Responses;
-using Iowa.Domain.Evaluation;
+using Iowa.Domain.EvaluationAggregate;
 
 using MapsterMapper;
 using MediatR;

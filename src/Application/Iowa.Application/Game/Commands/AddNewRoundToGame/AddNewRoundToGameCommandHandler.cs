@@ -1,4 +1,5 @@
-﻿using Iowa.Application.Common.Interfaces.Persistence;
+﻿using Iowa.Application._Common.Interfaces.Persistence.Base;
+using Iowa.Application.Common.Interfaces.Persistence;
 using Iowa.Domain.GameAggregate.Entities;
 using Iowa.Domain.GameAggregate.ValueObjects;
 
@@ -9,10 +10,12 @@ namespace Iowa.Application.Game.Commands.AddNewRoundToGame;
 public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGameCommand>
 {
     private readonly IGameRepository _gameRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public AddNewRoundToGameCommandHandler(IGameRepository gameRepository)
+    public AddNewRoundToGameCommandHandler(IGameRepository gameRepository, IUnitOfWork unitOfWork)
     {
         _gameRepository = gameRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task Handle(AddNewRoundToGameCommand request, CancellationToken cancellationToken)
@@ -29,8 +32,7 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
 
         var total = CalculateTotal(request);
         await _gameRepository.AddRoundToGameAsync(request.GameId, Round.Create(request.PreviousBalance, total));
-
-        //signal account to change
+        await _unitOfWork.SaveChangesAsync();
     }
 
     private long CalculateTotal(AddNewRoundToGameCommand request)

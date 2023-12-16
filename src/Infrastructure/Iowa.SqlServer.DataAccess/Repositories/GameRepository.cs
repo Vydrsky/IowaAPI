@@ -8,7 +8,7 @@ namespace Iowa.SqlServer.DataAccess.Repositories;
 
 public class GameRepository : GenericSqlServerRepository<GameAggregate,GameId>,IGameRepository
 {
-    public GameRepository(ApplicationDbContext context) : base(context)
+    public GameRepository(ApplicationDbContext context) : base(context.Games)
     {
     }
 
@@ -16,7 +16,7 @@ public class GameRepository : GenericSqlServerRepository<GameAggregate,GameId>,I
     {
         await Task.Run(() =>
         {
-            var result = _dbContext.Games.Where(game => game.Id.Value == gameId).SingleOrDefault().EnsureExists();
+            var result = _dbSet.Where(game => game.Id.Value == gameId).SingleOrDefault().EnsureExists();
 
             result.AddNewRound(round);
         });
@@ -26,7 +26,7 @@ public class GameRepository : GenericSqlServerRepository<GameAggregate,GameId>,I
     {
         await Task.Run(() =>
         {
-            var result = _dbContext.Games.Where(game => game.Id.Value == id).SingleOrDefault().EnsureExists();
+            var result = _dbSet.Where(game => game.Id.Value == id).SingleOrDefault().EnsureExists();
 
             result.CleanGameState();
         });

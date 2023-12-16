@@ -19,10 +19,10 @@ public sealed class UserAggregate : AggregateRoot<UserId>
         GameId = gameId;
     }
 
-    public static UserAggregate Create(string userCode, AccountId accountId, GameId gameId)
+    public static UserAggregate Create(string userCode, AccountId accountId, GameId gameId, UserId? id = null)
     {
         var user = new UserAggregate(
-            UserId.CreateUnique(),
+            id ?? UserId.CreateUnique(),
             userCode,
             accountId,
             gameId);
