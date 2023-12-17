@@ -6,4 +6,5 @@ namespace Iowa.Application._Common.Interfaces.Persistence;
 
 public interface IAccountRepository : IGenericRepository<AccountAggregate, AccountId>
 {
+    Task CleanAccount(Guid accountId);
 }

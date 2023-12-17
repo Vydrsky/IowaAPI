@@ -16,39 +16,34 @@ public class GenericSqlServerRepository<TAggregate, TId> : IGenericRepository<TA
 
     public async Task<TAggregate> GetByIdAsync(TId id)
     {
-        return await Task.Run(() =>
-        {
-            return _dbSet.Where(x => x.Id == id).SingleOrDefault().EnsureExists();
-        });
+        var result = await _dbSet.Where(x => x.Id == id).SingleOrDefaultAsync();
+
+        return result.EnsureExists();
     }
     public async Task<IEnumerable<TAggregate>> GetAllAsync()
     {
-        return await Task.Run(_dbSet.AsEnumerable);
+        return await _dbSet.ToListAsync();
     }
 
     public async Task AddAsync(TAggregate aggregate)
     {
-        await Task.Run(() => _dbSet.Add(aggregate));
+        await _dbSet.AddAsync(aggregate);
     }
 
     public async Task UpdateAsync(TAggregate aggregate)
     {
-        await Task.Run(() =>
-        {
-            var result = _dbSet.Where(x => x.Id == aggregate.Id).SingleOrDefault().EnsureExists();
+        var result = await _dbSet.Where(x => x.Id == aggregate.Id).SingleOrDefaultAsync();
 
-            result = aggregate;
-        });
+        result = aggregate.EnsureExists();
     }
 
     public async Task DeleteAsync(TId id)
     {
-        await Task.Run(() =>
-        {
-            var result = _dbSet.Where(x => x.Id == id).SingleOrDefault().EnsureExists();
+        var result = await _dbSet.Where(x => x.Id == id).SingleOrDefaultAsync();
 
-            _dbSet.Remove(result);
-        });
+        result = result.EnsureExists();
+
+        _dbSet.Remove(result);
     }
 
 }

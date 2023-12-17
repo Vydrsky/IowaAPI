@@ -43,6 +43,7 @@ public static class DependencyInjection
     private static IServiceCollection AddInterceptors(IServiceCollection services)
     {
         services.AddScoped<PublishDomainEventsInterceptor>();
+        services.AddScoped<DomainEventPublisher>();
 
         return services;
     }

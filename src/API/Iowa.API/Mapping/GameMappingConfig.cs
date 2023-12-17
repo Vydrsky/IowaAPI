@@ -1,7 +1,5 @@
-﻿using Iowa.Contracts.Game.Responses;
-using Iowa.Domain.GameAggregate;
-using Iowa.Domain.GameAggregate.Entities;
-using Iowa.Domain.GameAggregate.ValueObjects;
+﻿using Iowa.Application.Game.Commands.AddNewRoundToGame;
+using Iowa.Contracts.Game.Requests;
 
 using Mapster;
 
@@ -11,11 +9,8 @@ public class GameMappingConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        //config.NewConfig<Round, RoundResponse>()
-        //    .Map(dest => dest, src => src)
-        //    .TwoWays();
-        //config.NewConfig<Card, CardResponse>()
-        //    .Map(dest => dest, src => src)
-        //    .TwoWays();
+        config.NewConfig<AddNewRoundToGameRequest, AddNewRoundToGameCommand>()
+            .Map(dest => dest, src => src.Card)
+            .TwoWays();
     }
 }

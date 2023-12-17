@@ -10,4 +10,11 @@ public class AccountRepository : GenericSqlServerRepository<AccountAggregate, Ac
     public AccountRepository(ApplicationDbContext context) : base(context.Accounts)
     {
     }
+    
+    public async Task CleanAccount(Guid accountId)
+    {
+        var account = await GetByIdAsync(AccountId.Create(accountId));
+
+        account.ClearAccount();
+    }
 }

@@ -34,6 +34,12 @@ public sealed class AccountAggregate : AggregateRoot<AccountId>
 
         return account;
     }
+
+    public void ClearAccount()
+    {
+        Balance = 2000;
+        PreviousBalance = Balance;
+    }
 #pragma warning disable CS8618
     private AccountAggregate()
     {

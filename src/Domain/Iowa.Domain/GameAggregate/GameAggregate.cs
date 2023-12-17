@@ -32,22 +32,28 @@ public sealed class GameAggregate : AggregateRoot<GameId>
         game.AddDomainEvent(new GameCreated(game));
 
         return game;
-        
     }
 
     public void AddNewRound(Round round)
     {
         _rounds.Add(round);
+        AddDomainEvent(new RoundAdded(this));
     }
 
     public void CleanGameState()
     {
         _rounds.Clear();
+        AddDomainEvent(new GameRestarted(this));
     }
 
     public bool RoundLimitReached()
     {
-        return _rounds.Count >= 100;
+        if (_rounds.Count >= 100)
+        {
+            AddDomainEvent(new RoundLimitReached(this));
+            return true;
+        }
+        return false;
     }
 
 #pragma warning disable CS8618

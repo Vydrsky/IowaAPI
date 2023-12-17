@@ -1,22 +1,16 @@
-﻿using Iowa.Application._Common.Exceptions.Base;
-using Iowa.Application._Common.Interfaces.Services;
-using Iowa.Application.Common.Exceptions;
-using Iowa.Domain.Common.Models;
+﻿using Iowa.Application.Common.Exceptions;
 
-using MediatR;
-
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Iowa.SqlServer.DataAccess.Interceptors;
 
 public class PublishDomainEventsInterceptor : SaveChangesInterceptor
 {
-    private readonly IPublisher _mediator;
+    private readonly DomainEventPublisher _publisher;
 
-    public PublishDomainEventsInterceptor(IPublisher mediator)
+    public PublishDomainEventsInterceptor(DomainEventPublisher publisher)
     {
-        _mediator = mediator;
+        _publisher = publisher;
     }
 
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
@@ -26,25 +20,7 @@ public class PublishDomainEventsInterceptor : SaveChangesInterceptor
 
     public async override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
     {
-        if (eventData.Context is null)
-        {
-            throw new DomainEventPublishException();
-        }
-
-        var entitiesWithDomainEvents = eventData.Context.ChangeTracker.Entries<IHasDomainEvents>()
-            .Where(entry => entry.Entity.DomainEvents.Any())
-            .Select(entry => entry.Entity)
-            .ToList();
-
-        var domainEvents = entitiesWithDomainEvents.SelectMany(e => e.DomainEvents).ToList();
-
-        entitiesWithDomainEvents.ForEach(e => e.ClearDomainEvents());
-
-        foreach (var domainEvent in domainEvents)
-        {
-            await _mediator.Publish(domainEvent);
-        }
-
+        await _publisher.PublishDomainEvents(eventData.Context);
         return await base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
