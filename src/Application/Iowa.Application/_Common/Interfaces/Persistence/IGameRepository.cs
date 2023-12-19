@@ -9,4 +9,5 @@ public interface IGameRepository : IGenericRepository<GameAggregate,GameId>
 {
     Task AddRoundToGameAsync(Guid gameId, Round round);
     Task RestartGame(Guid id);
+    Task AddCardForGame(Guid id, Card card);
 }

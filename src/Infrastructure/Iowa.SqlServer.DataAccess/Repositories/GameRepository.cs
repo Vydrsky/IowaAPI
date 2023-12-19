@@ -27,4 +27,11 @@ public class GameRepository : GenericSqlServerRepository<GameAggregate, GameId>,
             
         result.EnsureExists().CleanGameState();
     }
+
+    public async Task AddCardForGame(Guid id, Card card)
+    {
+        var game = await _dbSet.Where(game => game.Id == GameId.Create(id)).SingleOrDefaultAsync();
+
+        game.EnsureExists().AddNewCard(card);
+    }
 }

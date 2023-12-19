@@ -22,25 +22,26 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
     {
         var game = await _gameRepository.GetByIdAsync(GameId.Create(request.GameId));
 
-        if (game.RoundLimitReached())
+        if (!game.RoundLimitReached())
         {
-            //event for creating evaluation
-
-            //this will have to return some info for the client to end the game
-            return;
+            var total = CalculateTotal(request);
+            short roundNumber = (short)(game.Rounds.Count + 1);
+            await _gameRepository.AddRoundToGameAsync(request.GameId, Round.Create(request.PreviousBalance, total, roundNumber));
         }
 
-        var total = CalculateTotal(request);
-        await _gameRepository.AddRoundToGameAsync(request.GameId, Round.Create(request.PreviousBalance, total));
         await _unitOfWork.SaveChangesAsync();
     }
 
     private long CalculateTotal(AddNewRoundToGameCommand request)
     {
+        var newTotal = request.PreviousBalance + request.RewardValue;
         Random rnd = new Random();
-        var roll = rnd.Next(0, 100);
-        return roll > request.PunishmentPercentChance
-            ? request.PreviousBalance + request.RewardValue
-            : request.PreviousBalance - request.PunishmentValue;
+
+        var rollForPunishment = rnd.Next(1, 101);
+        if (rollForPunishment <= request.PunishmentPercentChance) {
+            var punishmentValue = rnd.Next((int)request.PunishmentValueLower, (int)request.PunishmentValueUpper + 1);
+            newTotal -= punishmentValue;
+        }
+        return newTotal;
     }
 }

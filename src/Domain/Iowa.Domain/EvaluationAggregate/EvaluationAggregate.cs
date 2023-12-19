@@ -18,7 +18,7 @@ public sealed class EvaluationAggregate : AggregateRoot<EvaluationId>
         UserId = userId;
         AccountId = accountId;
         IsPassed = isPassed;
-        EvaluationDate = EvaluationDate;
+        EvaluationDate = evaluationDate;
     }
 
     public static EvaluationAggregate Create(UserId userId, AccountId accountId, bool isPassed, DateTime evaluationDate, EvaluationId? id = null)

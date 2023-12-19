@@ -16,4 +16,6 @@
     <ProjectReference Include="..\..\Domain\Iowa.Domain\Iowa.Domain.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
 </Project>

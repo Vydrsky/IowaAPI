@@ -60,14 +60,15 @@ public class GameConfigurations : IEntityTypeConfiguration<GameAggregate>
 
     private void ConfigureCardsTable(EntityTypeBuilder<GameAggregate> builder)
     {
-        builder.OwnsMany(c => c.Cards, cb =>
+        builder.OwnsMany(g => g.Cards, cb =>
         {
             cb.ToTable("Cards");
             cb.WithOwner().HasForeignKey("GameId");
             cb.HasKey("Id");
+
             cb.Property(c => c.Type)
-                .HasConversion(new EnumToStringConverter<CardType>())
-                .HasMaxLength(256);
+                .HasMaxLength(256)
+                .HasConversion(new EnumToStringConverter<CardType>());
         });
 
         builder.Metadata

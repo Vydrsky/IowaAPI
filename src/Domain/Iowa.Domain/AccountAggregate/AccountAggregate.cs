@@ -40,6 +40,13 @@ public sealed class AccountAggregate : AggregateRoot<AccountId>
         Balance = 2000;
         PreviousBalance = Balance;
     }
+
+    public void SetState(long previousBalance, long newBalance)
+    {
+        PreviousBalance = previousBalance;
+        Balance = newBalance;
+    }
+
 #pragma warning disable CS8618
     private AccountAggregate()
     {

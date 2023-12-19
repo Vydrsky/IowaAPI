@@ -22,7 +22,7 @@ namespace Iowa.SqlServer.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Iowa.Domain.Account.AccountAggregate", b =>
+            modelBuilder.Entity("Iowa.Domain.AccountAggregate.AccountAggregate", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -44,7 +44,7 @@ namespace Iowa.SqlServer.DataAccess.Migrations
                     b.ToTable("Accounts", (string)null);
                 });
 
-            modelBuilder.Entity("Iowa.Domain.Evaluation.EvaluationAggregate", b =>
+            modelBuilder.Entity("Iowa.Domain.EvaluationAggregate.EvaluationAggregate", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -74,6 +74,9 @@ namespace Iowa.SqlServer.DataAccess.Migrations
                     b.Property<Guid>("AccountId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -93,6 +96,9 @@ namespace Iowa.SqlServer.DataAccess.Migrations
                     b.Property<Guid>("GameId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("UserCode")
                         .IsRequired()
                         .HasMaxLength(512)
@@ -105,34 +111,7 @@ namespace Iowa.SqlServer.DataAccess.Migrations
 
             modelBuilder.Entity("Iowa.Domain.GameAggregate.GameAggregate", b =>
                 {
-                    b.OwnsMany("Iowa.Domain.GameAggregate.Entities.Round", "Rounds", b1 =>
-                        {
-                            b1.Property<Guid>("Id")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<Guid>("GameId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<long>("PreviousBalance")
-                                .HasColumnType("bigint");
-
-                            b1.Property<short>("RoundNumber")
-                                .HasColumnType("smallint");
-
-                            b1.Property<long>("Total")
-                                .HasColumnType("bigint");
-
-                            b1.HasKey("Id", "GameId");
-
-                            b1.HasIndex("GameId");
-
-                            b1.ToTable("Rounds", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("GameId");
-                        });
-
-                    b.OwnsMany("Iowa.Domain.GameAggregate.ValueObjects.Card", "Cards", b1 =>
+                    b.OwnsMany("Iowa.Domain.GameAggregate.GameAggregate.Cards#Iowa.Domain.GameAggregate.ValueObjects.Card", "Cards", b1 =>
                         {
                             b1.Property<int>("Id")
                                 .ValueGeneratedOnAdd()
@@ -162,6 +141,33 @@ namespace Iowa.SqlServer.DataAccess.Migrations
                             b1.HasIndex("GameId");
 
                             b1.ToTable("Cards", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("GameId");
+                        });
+
+                    b.OwnsMany("Iowa.Domain.GameAggregate.GameAggregate.Rounds#Iowa.Domain.GameAggregate.Entities.Round", "Rounds", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<Guid>("GameId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<long>("PreviousBalance")
+                                .HasColumnType("bigint");
+
+                            b1.Property<short>("RoundNumber")
+                                .HasColumnType("smallint");
+
+                            b1.Property<long>("Total")
+                                .HasColumnType("bigint");
+
+                            b1.HasKey("Id", "GameId");
+
+                            b1.HasIndex("GameId");
+
+                            b1.ToTable("Rounds", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("GameId");

@@ -13,19 +13,22 @@ public sealed class GameAggregate : AggregateRoot<GameId>
     private readonly List<Card> _cards = new();
     public IReadOnlyList<Round> Rounds => _rounds.ToList().AsReadOnly();
     public IReadOnlyList<Card> Cards => _cards.ToList().AsReadOnly();
+    public bool IsActive { get; private set; }
     public UserId UserId { get; private set; }
     public AccountId AccountId { get; private set; }
 
-    private GameAggregate(GameId id, UserId userId, AccountId accountID) : base(id)
+    private GameAggregate(GameId id, bool isActive, UserId userId, AccountId accountID) : base(id)
     {
         UserId = userId;
         AccountId = accountID;
+        IsActive = isActive;
     }
 
     public static GameAggregate Create(UserId userId, AccountId accountID, GameId? id = null)
     {
         var game = new GameAggregate(
             id ?? GameId.CreateUnique(),
+            true,
             userId,
             accountID);
 
@@ -37,7 +40,12 @@ public sealed class GameAggregate : AggregateRoot<GameId>
     public void AddNewRound(Round round)
     {
         _rounds.Add(round);
-        AddDomainEvent(new RoundAdded(this));
+        AddDomainEvent(new RoundAdded(round, AccountId));
+    }
+
+    public void AddNewCard(Card card)
+    {
+        _cards.Add(card);
     }
 
     public void CleanGameState()
@@ -48,12 +56,18 @@ public sealed class GameAggregate : AggregateRoot<GameId>
 
     public bool RoundLimitReached()
     {
-        if (_rounds.Count >= 100)
+        if (_rounds.Count >= 10)
         {
-            AddDomainEvent(new RoundLimitReached(this));
+            AddDomainEvent(new RoundLimitReached(this, UserId));
             return true;
         }
         return false;
+    }
+
+    public void EndGame()
+    {
+        IsActive = false;
+        AddDomainEvent(new GameEnded(this));
     }
 
 #pragma warning disable CS8618

@@ -20,7 +20,7 @@ public class GameCreatedEventHandler : INotificationHandler<GameCreated>
 
     public async Task Handle(GameCreated notification, CancellationToken cancellationToken)
     {
-        await _accountRepository.AddAsync(AccountAggregate.Create(2000, 0, notification.Game.UserId, notification.Game.Id, notification.Game.AccountId));
+        await _accountRepository.AddAsync(AccountAggregate.Create(2000, 2000, notification.Game.UserId, notification.Game.Id, notification.Game.AccountId));
         await _unitOfWork.PublishNewDomainEvents();
     }
 }

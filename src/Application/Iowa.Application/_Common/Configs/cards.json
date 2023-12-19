@@ -1,0 +1,32 @@
+﻿{
+  "cards":[
+    {
+      "cardType": "A",
+      "rewardValue": 100,
+      "punishmentValueLower": 35,
+      "punishmentValueUpper": 150,
+      "punishmentChancePercent": 50
+    },
+    {
+      "cardType": "B",
+      "rewardValue": 100,
+      "punishmentValueLower": 1250,
+      "punishmentValueUpper": 1250,
+      "punishmentChancePercent": 10
+    },
+    {
+      "cardType": "C",
+      "rewardValue": 50,
+      "punishmentValueLower": 25,
+      "punishmentValueUpper": 75,
+      "punishmentChancePercent": 50
+    },
+    {
+      "cardType": "D",
+      "rewardValue": 50,
+      "punishmentValueLower": 250,
+      "punishmentValueUpper": 250,
+      "punishmentChancePercent": 10
+    }
+  ]
+}

@@ -9,18 +9,20 @@ public sealed class Round : Entity<RoundId>
     public long PreviousBalance { get; private set; }
     public long Total { get; private set; }
 
-    private Round(RoundId id, long previousBalance, long total) : base(id)
+    private Round(RoundId id, long previousBalance, long total, short roundNumber) : base(id)
     {
         PreviousBalance = previousBalance;
         Total = total;
+        RoundNumber = roundNumber;
     }
 
-    public static Round Create(long previousBalance, long total)
+    public static Round Create(long previousBalance, long total, short roundNumber)
     {
         return new(
             RoundId.CreateUnique(),
             previousBalance,
-            total);
+            total,
+            roundNumber);
     }
 
 #pragma warning disable CS8618
