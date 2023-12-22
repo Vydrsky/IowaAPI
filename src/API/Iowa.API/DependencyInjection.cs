@@ -6,6 +6,8 @@ using Mapster;
 
 using MapsterMapper;
 
+using Microsoft.AspNetCore.Mvc.Formatters;
+
 namespace Iowa.API;
 
 public static class DependencyInjection {
@@ -14,7 +16,9 @@ public static class DependencyInjection {
         AddMiddlewares(services);
         AddLogging(services);
 
-        services.AddControllers();
+        services.AddControllers(options => {
+            options.OutputFormatters.RemoveType<StringOutputFormatter>();
+            });
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(options => {
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

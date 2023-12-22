@@ -21,7 +21,7 @@ public class RoundAddedEventHandler : INotificationHandler<RoundAdded>
     {
         var account = await _accountRepository.GetByIdAsync(notification.AccountId);
 
-        account.SetState(notification.Round.PreviousBalance, notification.Round.Total);
+        account.SetState(notification.Round.Total);
 
         await _unitOfWork.PublishNewDomainEvents();
     }

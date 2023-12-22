@@ -1,4 +1,6 @@
-﻿using Iowa.API.Controllers.Base;
+﻿using System.Net.Mime;
+
+using Iowa.API.Controllers.Base;
 using Iowa.Application.Game.Commands.AddNewRoundToGame;
 using Iowa.Application.Game.Commands.RestartGame;
 using Iowa.Application.Game.Queries.GetGame;
@@ -30,7 +32,9 @@ public class GameController : IowaController
     /// <summary>
     /// Returns a game for the user, or creates a new one if it did not exist
     /// </summary>
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetGame")]
+    [ProducesResponseType(200)]
+    [Produces(MediaTypeNames.Application.Json)]
     public async Task<ActionResult<GameResponse>> GetGame([FromRoute] Guid id) {
         var result = await _mediator.Send(new GetGameQuery(id));
         return Ok(_mapper.Map<GameAggregate, GameResponse>(result));
@@ -39,8 +43,9 @@ public class GameController : IowaController
     /// <summary>
     /// Adds new round to the game. This invokes many domain events that control the flow of the game forwards
     /// </summary>
-    [HttpPost]
-    public async Task<ActionResult> AddNewRoundToGameRequest([FromBody] AddNewRoundToGameRequest request) {
+    [HttpPost(Name = "AddNewRoundToGame")]
+    [ProducesResponseType(200)]
+    public async Task<ActionResult> AddNewRoundToGame([FromBody] AddNewRoundToGameRequest request) {
         var result = await _mediator.Send(_mapper.Map<AddNewRoundToGameRequest, AddNewRoundToGameCommand>(request));
         return Ok(_mapper.Map<AddNewRoundResult,AddNewRoundResponse>(result));
     }
@@ -48,7 +53,8 @@ public class GameController : IowaController
     /// <summary>
     /// Restores game to initial state
     /// </summary>
-    [HttpPut("{id}")]
+    [HttpPut("{id}", Name = "RestartGame")]
+    [ProducesResponseType(200)]
     public async Task<ActionResult<GameResponse>> RestartGame([FromRoute] Guid id) {
         await _mediator.Send(new RestartGameCommand(id));
         return Ok();

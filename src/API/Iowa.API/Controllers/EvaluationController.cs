@@ -24,7 +24,8 @@ public class EvaluationController : IowaController
     /// <summary>
     /// Returns a list of all evaluations
     /// </summary>
-    [HttpGet]
+    [HttpGet(Name = "GetAllEvaluations")]
+    [ProducesResponseType(200)]
     public async Task<ActionResult<IReadOnlyList<EvaluationResponse>>> GetAllEvaluations() {
         var result = await _mediator.Send(new GetAllEvaluationsQuery());
         return Ok(_mapper.Map<IEnumerable<EvaluationAggregate>, IEnumerable<EvaluationResponse>>(result));

@@ -24,7 +24,8 @@ public class AccountController : IowaController
     /// <summary>
     /// Returns an account by its id, if the account does not exist a new one is returned
     /// </summary>
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetAccount")]
+    [ProducesResponseType(200)]
     public async Task<ActionResult<AccountResponse>> GetAccount([FromRoute] Guid id) {
         var result = await _mediator.Send(new GetAccountQuery(id));
         return Ok(_mapper.Map<AccountAggregate, AccountResponse>(result));

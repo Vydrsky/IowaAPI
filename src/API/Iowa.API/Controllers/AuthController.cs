@@ -29,7 +29,7 @@ public class AuthController : IowaController
     /// <summary>
     /// Gets or creates a user and returns a valid token
     /// </summary>
-    [HttpPost]
+    [HttpPost(Name = "Authenticate")]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
     public async Task<ActionResult<AuthenticationResponse>> Authenticate([FromBody] AuthenticateRequest request)

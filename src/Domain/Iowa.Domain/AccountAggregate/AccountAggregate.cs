@@ -41,9 +41,9 @@ public sealed class AccountAggregate : AggregateRoot<AccountId>
         PreviousBalance = Balance;
     }
 
-    public void SetState(long previousBalance, long newBalance)
+    public void SetState(long newBalance)
     {
-        PreviousBalance = previousBalance;
+        PreviousBalance = Balance;
         Balance = newBalance;
     }
 

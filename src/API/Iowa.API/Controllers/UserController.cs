@@ -1,4 +1,5 @@
 ﻿using Iowa.API.Controllers.Base;
+using Iowa.Application.Common.Exceptions;
 using Iowa.Application.User.Queries.GetUser;
 using Iowa.Contracts.User.Responses;
 using Iowa.Domain.UserAggregate;
@@ -26,7 +27,8 @@ public class UserController : IowaController
     /// <summary>
     /// Returns only an existing user.
     /// </summary>
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetUser")]
+    [ProducesResponseType(200)]
     public async Task<ActionResult<UserResponse>> GetUser([FromRoute] Guid id)
     {
         var result = await _mediator.Send(new GetUserQuery(id));
