@@ -1,4 +1,5 @@
-﻿using Iowa.Domain.AccountAggregate.ValueObjects;
+﻿using Iowa.Domain._Common.Exceptions;
+using Iowa.Domain.AccountAggregate.ValueObjects;
 using Iowa.Domain.Common.Models;
 using Iowa.Domain.GameAggregate.Entities;
 using Iowa.Domain.GameAggregate.Events;
@@ -37,14 +38,23 @@ public sealed class GameAggregate : AggregateRoot<GameId>
         return game;
     }
 
-    public void AddNewRound(Round round)
+    public bool AddNewRound(Round round)
     {
         _rounds.Add(round);
         AddDomainEvent(new RoundAdded(round, AccountId));
+
+        if(_rounds.Count >= DomainConstants.ROUND_LIMIT)
+        {
+            AddDomainEvent(new RoundLimitReached(this));
+            return false;
+        }
+
+        return true;
     }
 
     public void AddNewCard(Card card)
     {
+        if (_cards.Count >= DomainConstants.CARD_CAPACITY) throw new CardListFullException();
         _cards.Add(card);
     }
 
@@ -52,16 +62,6 @@ public sealed class GameAggregate : AggregateRoot<GameId>
     {
         _rounds.Clear();
         AddDomainEvent(new GameRestarted(this));
-    }
-
-    public bool RoundLimitReached()
-    {
-        if (_rounds.Count >= 10)
-        {
-            AddDomainEvent(new RoundLimitReached(this, UserId));
-            return true;
-        }
-        return false;
     }
 
     public void EndGame()

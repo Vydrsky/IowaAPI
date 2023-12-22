@@ -1,6 +1,8 @@
 ﻿using Iowa.Application._Common.Interfaces.Persistence.Base;
 using Iowa.Application.Common.Interfaces.Persistence;
+using Iowa.Domain.GameAggregate.Enums;
 using Iowa.Domain.GameAggregate.Events;
+using Iowa.Domain.GameAggregate.ValueObjects;
 
 using MediatR;
 
@@ -8,18 +10,45 @@ namespace Iowa.Application.Game.Events;
 
 public class GameCreatedEventHandler : INotificationHandler<GameCreated>
 {
-    private readonly IGameRepository _gameRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public GameCreatedEventHandler(IGameRepository gameRepository, IUnitOfWork unitOfWork)
+    public GameCreatedEventHandler(IUnitOfWork unitOfWork)
     {
-        _gameRepository = gameRepository;
         _unitOfWork = unitOfWork;
     }
 
-    public Task Handle(GameCreated notification, CancellationToken cancellationToken)
+    public async Task Handle(GameCreated notification, CancellationToken cancellationToken)
     {
-        return Task.CompletedTask;
-        //TODO
+        var cards = new List<Card>
+        {
+            Card.Create(
+                CardType.A,
+                rewardValue: 100, 
+                punishmentValueLower: 35,
+                punishmentValueUpper: 150, 
+                punishmentPercentChance: 50),
+            Card.Create(
+                CardType.B,
+                rewardValue: 100,
+                punishmentValueLower: 1250,
+                punishmentValueUpper: 1250,
+                punishmentPercentChance: 10),
+            Card.Create(
+                CardType.C,
+                rewardValue: 50,
+                punishmentValueLower: 25,
+                punishmentValueUpper: 75,
+                punishmentPercentChance: 50),
+            Card.Create(
+                CardType.D,
+                rewardValue: 50,
+                punishmentValueLower: 250,
+                punishmentValueUpper: 250,
+                punishmentPercentChance: 10),
+        };
+
+        cards.ForEach(notification.Game.AddNewCard);
+
+        await _unitOfWork.PublishNewDomainEvents();
     }
 }

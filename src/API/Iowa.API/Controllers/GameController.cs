@@ -2,6 +2,7 @@
 using Iowa.Application.Game.Commands.AddNewRoundToGame;
 using Iowa.Application.Game.Commands.RestartGame;
 using Iowa.Application.Game.Queries.GetGame;
+using Iowa.Application.Game.Results;
 using Iowa.Contracts.Game.Requests;
 using Iowa.Contracts.Game.Responses;
 using Iowa.Domain.GameAggregate;
@@ -39,9 +40,9 @@ public class GameController : IowaController
     /// Adds new round to the game. This invokes many domain events that control the flow of the game forwards
     /// </summary>
     [HttpPost]
-    public async Task<IActionResult> AddNewRoundToGameRequest([FromBody] AddNewRoundToGameRequest request) {
-        await _mediator.Send(_mapper.Map<AddNewRoundToGameRequest, AddNewRoundToGameCommand>(request));
-        return Ok();
+    public async Task<ActionResult> AddNewRoundToGameRequest([FromBody] AddNewRoundToGameRequest request) {
+        var result = await _mediator.Send(_mapper.Map<AddNewRoundToGameRequest, AddNewRoundToGameCommand>(request));
+        return Ok(_mapper.Map<AddNewRoundResult,AddNewRoundResponse>(result));
     }
 
     /// <summary>

@@ -1,4 +1,5 @@
-﻿using Iowa.Domain.GameAggregate.Enums;
+﻿using Iowa.Application.Game.Results;
+using Iowa.Domain.GameAggregate.Enums;
 
 using MediatR;
 
@@ -11,4 +12,4 @@ public record AddNewRoundToGameCommand(
     long RewardValue,
     long PunishmentValueLower,
     long PunishmentValueUpper,
-    short PunishmentPercentChance) : IRequest;
+    short PunishmentPercentChance) : IRequest<AddNewRoundResult>;

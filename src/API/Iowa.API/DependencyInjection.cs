@@ -37,6 +37,7 @@ public static class DependencyInjection {
         services.AddScoped<UnknownExceptionHandlingMiddleware>();
         services.AddScoped<ApplicationExceptionHandlingMiddleware>();
         services.AddScoped<ValidationExceptionHandlingMiddleware>();
+        services.AddScoped<DomainExceptionHandlingMiddleware>();
         return services;
     }
 

@@ -23,7 +23,7 @@ public class RoundLimitReachedEventHandler : INotificationHandler<RoundLimitReac
     public async Task Handle(RoundLimitReached notification, CancellationToken cancellationToken)
     {
         var isPassed = (await _accountRepository.GetByIdAsync(notification.Game.AccountId)).Balance >= 4000;
-        await _evaluationRepository.AddAsync(EvaluationAggregate.Create(notification.UserId, notification.Game.AccountId, isPassed, DateTime.Now));
+        await _evaluationRepository.AddAsync(EvaluationAggregate.Create(notification.Game.UserId, notification.Game.AccountId, isPassed, DateTime.Now));
         await _unitOfWork.PublishNewDomainEvents();
     }
 }

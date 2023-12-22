@@ -17,9 +17,11 @@ var app = builder.Build();
 //MIDDLEWARE PIPELINE
 app.AddDbSeeding();
 
-app.UseMiddleware<UnknownExceptionHandlingMiddleware>(); //Ensure first
+app.UseMiddleware<UnknownExceptionHandlingMiddleware>();
+
 app.UseMiddleware<ApplicationExceptionHandlingMiddleware>();
 app.UseMiddleware<ValidationExceptionHandlingMiddleware>();
+app.UseMiddleware<DomainExceptionHandlingMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI();

@@ -14,11 +14,11 @@ public class GameRepository : GenericSqlServerRepository<GameAggregate, GameId>,
     {
     }
 
-    public async Task AddRoundToGameAsync(Guid gameId, Round round)
+    public async Task<bool> AddRoundToGameAsync(Guid gameId, Round round)
     {
         var result = await _dbSet.Where(game => game.Id == GameId.Create(gameId)).SingleOrDefaultAsync();
 
-        result.EnsureExists().AddNewRound(round);
+        return result.EnsureExists().AddNewRound(round);
     }
 
     public async Task RestartGame(Guid id)

@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-using Iowa.Domain.AccountAggregate;
+﻿using Iowa.Domain.AccountAggregate;
 using Iowa.Domain.Common.Models;
 using Iowa.Domain.EvaluationAggregate;
 using Iowa.Domain.GameAggregate;
@@ -14,6 +12,7 @@ namespace Iowa.SqlServer.DataAccess;
 public class ApplicationDbContext : DbContext
 {
     private readonly PublishDomainEventsInterceptor _publishDomainEventsInterceptor;
+
     public ApplicationDbContext(DbContextOptions options, PublishDomainEventsInterceptor publishDomainEventsInterceptor) : base(options)
     {
         _publishDomainEventsInterceptor = publishDomainEventsInterceptor;
