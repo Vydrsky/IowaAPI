@@ -24,8 +24,8 @@ public class GameCreatedEventHandler : INotificationHandler<GameCreated>
             Card.Create(
                 CardType.A,
                 rewardValue: 100, 
-                punishmentValueLower: 35,
-                punishmentValueUpper: 150, 
+                punishmentValueLower: 150,
+                punishmentValueUpper: 350, 
                 punishmentPercentChance: 50),
             Card.Create(
                 CardType.B,

@@ -13,10 +13,12 @@ using MapsterMapper;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Iowa.API.Controllers;
 
+[Authorize]
 public class GameController : IowaController
 {
     private readonly ISender _mediator;
@@ -45,7 +47,7 @@ public class GameController : IowaController
     /// </summary>
     [HttpPost(Name = "AddNewRoundToGame")]
     [ProducesResponseType(200)]
-    public async Task<ActionResult> AddNewRoundToGame([FromBody] AddNewRoundToGameRequest request) {
+    public async Task<ActionResult<AddNewRoundResponse>> AddNewRoundToGame([FromBody] AddNewRoundToGameRequest request) {
         var result = await _mediator.Send(_mapper.Map<AddNewRoundToGameRequest, AddNewRoundToGameCommand>(request));
         return Ok(_mapper.Map<AddNewRoundResult,AddNewRoundResponse>(result));
     }

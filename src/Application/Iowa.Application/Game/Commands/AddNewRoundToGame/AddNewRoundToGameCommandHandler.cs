@@ -25,7 +25,7 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
 
         var total = CalculateTotal(request);
         short roundNumber = (short)(game.Rounds.Count + 1);
-        var result = await _gameRepository.AddRoundToGameAsync(request.GameId, Round.Create(request.PreviousBalance, total, roundNumber));
+        var result = await _gameRepository.AddRoundToGameAsync(request.GameId, Round.Create(request.PreviousBalance, total, roundNumber, request.CardType));
 
         await _unitOfWork.SaveChangesAsync();
 

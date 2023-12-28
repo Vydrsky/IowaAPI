@@ -96,7 +96,10 @@ namespace Iowa.SqlServer.DataAccess.Migrations
                     b.Property<Guid>("GameId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsArchived")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserCode")
@@ -118,6 +121,9 @@ namespace Iowa.SqlServer.DataAccess.Migrations
 
                             b1.Property<Guid>("GameId")
                                 .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("CardChosen")
+                                .HasColumnType("int");
 
                             b1.Property<long>("PreviousBalance")
                                 .HasColumnType("bigint");

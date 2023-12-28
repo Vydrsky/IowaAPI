@@ -18,6 +18,6 @@ public record RoundResponse(
 public record CardResponse(
     CardType Type,
     long RewardValue,
-    long PunishmentValue,
-    short PunishmentPercentChance,
-    long Result);
+    long PunishmentValueLower,
+    long PunishmentValueUpper,
+    short PunishmentPercentChance);

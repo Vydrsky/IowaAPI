@@ -16,6 +16,13 @@ public static class DependencyInjection {
         AddMiddlewares(services);
         AddLogging(services);
 
+        services.AddCors(o => o.AddPolicy("DefaultCORSPolicy", builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        }));
+
         services.AddControllers(options => {
             options.OutputFormatters.RemoveType<StringOutputFormatter>();
             });

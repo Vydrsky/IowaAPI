@@ -9,7 +9,7 @@ public record AddNewRoundToGameRequest(
 );
 
 public record CardRequest(
-    CardType CardType,
+    CardType Type,
     long RewardValue,
     long PunishmentValueLower,
     long PunishmentValueUpper,

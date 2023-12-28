@@ -4,6 +4,7 @@ using Iowa.Domain.GameAggregate.Events;
 
 using MediatR;
 using Iowa.Domain.EvaluationAggregate;
+using Iowa.Domain.GameAggregate.Enums;
 
 namespace Iowa.Application.Evaluation.Events;
 
@@ -22,7 +23,13 @@ public class RoundLimitReachedEventHandler : INotificationHandler<RoundLimitReac
 
     public async Task Handle(RoundLimitReached notification, CancellationToken cancellationToken)
     {
-        var isPassed = (await _accountRepository.GetByIdAsync(notification.Game.AccountId)).Balance >= 4000;
+        var isPassed = 
+            notification.Game.Rounds
+                .Where(r => r.CardChosen == CardType.C || r.CardChosen == CardType.D)
+                .ToList().Count > 
+            notification.Game.Rounds
+                .Where(r => r.CardChosen == CardType.A || r.CardChosen == CardType.B)
+                .ToList().Count;
         await _evaluationRepository.AddAsync(EvaluationAggregate.Create(notification.Game.UserId, notification.Game.AccountId, isPassed, DateTime.Now));
         await _unitOfWork.PublishNewDomainEvents();
     }

@@ -6,10 +6,12 @@ using Iowa.Domain.AccountAggregate;
 using MapsterMapper;
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Iowa.API.Controllers;
 
+[Authorize]
 public class AccountController : IowaController
 {
     private readonly ISender _mediator;

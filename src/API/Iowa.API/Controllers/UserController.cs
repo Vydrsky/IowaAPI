@@ -8,10 +8,12 @@ using MapsterMapper;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Iowa.API.Controllers;
 
+[Authorize]
 public class UserController : IowaController
 {
 

@@ -6,10 +6,12 @@ using Iowa.Domain.EvaluationAggregate;
 using MapsterMapper;
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Iowa.API.Controllers;
 
+[Authorize]
 public class EvaluationController : IowaController
 {
     private readonly ISender _mediator;
