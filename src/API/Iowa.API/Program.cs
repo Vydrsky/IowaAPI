@@ -15,8 +15,6 @@ builder.Services
 var app = builder.Build();
 
 //MIDDLEWARE PIPELINE
-app.AddDbSeeding();
-
 app.UseMiddleware<UnknownExceptionHandlingMiddleware>();
 
 app.UseMiddleware<ApplicationExceptionHandlingMiddleware>();
