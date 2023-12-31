@@ -21,7 +21,7 @@ public static class DependencyInjection
         AddAuth(services, configuration);
         AddServices(services);
 
-        services.AddSqlServerPersistance();
+        services.AddSqlServerPersistance(configuration);
 
         return services;
     }

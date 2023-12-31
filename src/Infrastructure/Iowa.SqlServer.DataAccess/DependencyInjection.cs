@@ -8,6 +8,7 @@ using Iowa.SqlServer.DataAccess.Repositories;
 using Iowa.SqlServer.DataAccess.Seeding;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Iowa.SqlServer.DataAccess;
@@ -15,11 +16,11 @@ namespace Iowa.SqlServer.DataAccess;
 public static class DependencyInjection
 {
 
-    public static IServiceCollection AddSqlServerPersistance(this IServiceCollection services)
+    public static IServiceCollection AddSqlServerPersistance(this IServiceCollection services, IConfiguration config)
     {
         services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer("Server=localhost;Database=Iowa;User Id=sa;Password=Simmto569!;Encrypt=false");
+            options.UseSqlServer(config.GetConnectionString("Default"));
             options.AddInterceptors();
         });
         AddRepositories(services);
