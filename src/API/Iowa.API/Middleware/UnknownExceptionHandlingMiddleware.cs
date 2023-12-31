@@ -33,7 +33,7 @@ public class UnknownExceptionHandlingMiddleware : IMiddleware
     private async Task HandleUknownExceptionAsync(HttpContext context, Exception ex)
     {
         ProblemDetails problemDetails;
-        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" || Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Staging")
         {
             while (ex.InnerException != null) ex = ex.InnerException;
 

@@ -1,5 +1,4 @@
 using Iowa.API;
-using Iowa.API.Extensions;
 using Iowa.API.Middleware;
 using Iowa.Application;
 using Iowa.Infrastructure;
