@@ -54,7 +54,7 @@ public sealed class GameAggregate : AggregateRoot<GameId>
 
     public void AddNewCard(Card card)
     {
-        if (_cards.Count >= DomainConstants.CARD_CAPACITY) throw new CardListFullException();
+        if (_cards.Count == DomainConstants.CARD_CAPACITY) throw new CardListFullException();
         _cards.Add(card);
     }
 
