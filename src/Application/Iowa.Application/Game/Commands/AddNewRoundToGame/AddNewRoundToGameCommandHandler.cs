@@ -37,21 +37,30 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
     private async Task<long> CalculateTotal(AddNewRoundToGameCommand request, bool roundResult)
     {
         var newTotal = request.PreviousBalance + request.RewardValue;
-        if (!roundResult)
-        {
-            //var lowerLossRounds = (await GetRoundsInCurrentGroup(request))
-            //    .Where(r => !r.Won && (r.Total - r.PreviousBalance == request.RewardValue - request.PunishmentValueLower));
-            //var upperLossRounds = (await GetRoundsInCurrentGroup(request))
-            //    .Where(r => !r.Won && (r.Total - r.PreviousBalance == request.RewardValue - request.PunishmentValueUpper));
+        if (roundResult) return newTotal;
 
-            //if(lowerLossRounds.Count() == upperLossRounds.Count())
-            //{
+        var rounds = await GetRoundsInCurrentGroup(request);
 
-            //}
-            newTotal -= request.PunishmentValueDefault;
-        }
+        var lostRounds = rounds.Where(r => !r.Won);
 
-        return newTotal;
+        var lowerLossRounds = (await GetRoundsInCurrentGroup(request))
+            .Where(r => !r.Won && (r.Total - r.PreviousBalance == request.RewardValue - request.PunishmentValueLower));
+        var upperLossRounds = (await GetRoundsInCurrentGroup(request))
+          .Where(r => !r.Won && (r.Total - r.PreviousBalance == request.RewardValue - request.PunishmentValueUpper));
+
+        //when lower and upper are unbalanced, choose the one missing
+        if (lowerLossRounds.Count() > upperLossRounds.Count())
+            return newTotal -= request.PunishmentValueUpper;
+
+        else if(lowerLossRounds.Count() < upperLossRounds.Count())
+            return newTotal -= request.PunishmentValueLower;
+
+        //if there is only 1 slot left, return default
+        if (lostRounds.Count() == (request.PunishmentPercentChance / 10) - 1)
+            return newTotal -= request.PunishmentValueDefault;
+
+        //when lower and upper are balanced, choose randomly
+        return newTotal -= GetRandomPunishmentValue(request);
     }
 
     private async Task<bool> DecideResult(AddNewRoundToGameCommand request)
@@ -70,7 +79,7 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
         {
             return false;
         }
-        
+
         //win or lose with chance equal to given chance
         return RollForResult(request.PunishmentPercentChance);
     }
@@ -78,7 +87,7 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
     private bool RollForResult(long baseChance)
     {
         Random rand = new Random(Guid.NewGuid().GetHashCode());
-        return rand.Next(0, 10) <= (baseChance/10);
+        return rand.Next(0, 10) >= (baseChance / 10);
     }
 
     private async Task<IEnumerable<Round>> GetRoundsInCurrentGroup(AddNewRoundToGameCommand request)
@@ -90,5 +99,16 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
         var currentGroup = roundsWithChosenCard.Count() % 10;
 
         return roundsWithChosenCard.Take(currentGroup);
+    }
+
+    private long GetRandomPunishmentValue(AddNewRoundToGameCommand request)
+    {
+        Random random = new Random(Guid.NewGuid().GetHashCode());
+        switch (random.Next(0, 3))
+        {
+            case 1: return request.PunishmentValueLower;
+            case 2: return request.PunishmentValueUpper;
+            default: return request.PunishmentValueDefault;
+        }
     }
 }
