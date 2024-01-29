@@ -23,26 +23,72 @@ public class AddNewRoundToGameCommandHandler : IRequestHandler<AddNewRoundToGame
     {
         var game = await _gameRepository.GetByIdAsync(GameId.Create(request.GameId));
 
-        var total = CalculateTotal(request);
+        var roundResult = await DecideResult(request);
+        var total = await CalculateTotal(request, roundResult);
         short roundNumber = (short)(game.Rounds.Count + 1);
-        var result = await _gameRepository.AddRoundToGameAsync(request.GameId, Round.Create(request.PreviousBalance, total, roundNumber, request.CardType));
+
+        var result = await _gameRepository.AddRoundToGameAsync(request.GameId, Round.Create(request.PreviousBalance, total, roundNumber, request.CardType, roundResult));
 
         await _unitOfWork.SaveChangesAsync();
 
         return new AddNewRoundResult(result);
     }
 
-    private long CalculateTotal(AddNewRoundToGameCommand request)
+    private async Task<long> CalculateTotal(AddNewRoundToGameCommand request, bool roundResult)
     {
         var newTotal = request.PreviousBalance + request.RewardValue;
-        Random rnd = new Random(Guid.NewGuid().GetHashCode());
-
-        var rollForPunishment = rnd.Next(1, 101);
-        if (rollForPunishment <= request.PunishmentPercentChance)
+        if (!roundResult)
         {
-            var punishmentValue = rnd.Next((int)request.PunishmentValueLower, (int)request.PunishmentValueUpper + 1);
-            newTotal -= punishmentValue;
+            //var lowerLossRounds = (await GetRoundsInCurrentGroup(request))
+            //    .Where(r => !r.Won && (r.Total - r.PreviousBalance == request.RewardValue - request.PunishmentValueLower));
+            //var upperLossRounds = (await GetRoundsInCurrentGroup(request))
+            //    .Where(r => !r.Won && (r.Total - r.PreviousBalance == request.RewardValue - request.PunishmentValueUpper));
+
+            //if(lowerLossRounds.Count() == upperLossRounds.Count())
+            //{
+
+            //}
+            newTotal -= request.PunishmentValueDefault;
         }
+
         return newTotal;
+    }
+
+    private async Task<bool> DecideResult(AddNewRoundToGameCommand request)
+    {
+        var rounds = await GetRoundsInCurrentGroup(request);
+        var lostRounds = rounds.Where(r => !r.Won);
+
+        //do not lose any more rounds in this bracket
+        if (lostRounds.Count() >= (request.PunishmentPercentChance / 10))
+        {
+            return true;
+        }
+
+        //all rounds have to be lost if, theres exactly that many rounds remaining as rounds lost are missing
+        if (10 - rounds.Count() == (request.PunishmentPercentChance / 10) - lostRounds.Count())
+        {
+            return false;
+        }
+        
+        //win or lose with chance equal to given chance
+        return RollForResult(request.PunishmentPercentChance);
+    }
+
+    private bool RollForResult(long baseChance)
+    {
+        Random rand = new Random(Guid.NewGuid().GetHashCode());
+        return rand.Next(0, 10) <= (baseChance/10);
+    }
+
+    private async Task<IEnumerable<Round>> GetRoundsInCurrentGroup(AddNewRoundToGameCommand request)
+    {
+        var roundsWithChosenCard = (await _gameRepository.GetByIdAsync(GameId.Create(request.GameId))).Rounds
+            .Where(r => r.CardChosen == request.CardType)
+            .OrderByDescending(r => r.RoundNumber);
+
+        var currentGroup = roundsWithChosenCard.Count() % 10;
+
+        return roundsWithChosenCard.Take(currentGroup);
     }
 }

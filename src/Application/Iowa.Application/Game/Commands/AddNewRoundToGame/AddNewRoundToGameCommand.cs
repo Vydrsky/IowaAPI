@@ -10,6 +10,7 @@ public record AddNewRoundToGameCommand(
     long PreviousBalance,
     CardType CardType,
     long RewardValue,
+    long PunishmentValueDefault,
     long PunishmentValueLower,
     long PunishmentValueUpper,
     short PunishmentPercentChance) : IRequest<AddNewRoundResult>;

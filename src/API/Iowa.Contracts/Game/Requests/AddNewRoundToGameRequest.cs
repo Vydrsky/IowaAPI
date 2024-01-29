@@ -11,6 +11,7 @@ public record AddNewRoundToGameRequest(
 public record CardRequest(
     CardType Type,
     long RewardValue,
+    long PunishmentValueDefault,
     long PunishmentValueLower,
     long PunishmentValueUpper,
     short PunishmentPercentChance);

@@ -13,11 +13,13 @@ public record RoundResponse(
     Guid Id,
     short RoundNumber,
     long PreviousBalance,
-    long Total);
+    long Total,
+    CardType Type);
 
 public record CardResponse(
     CardType Type,
     long RewardValue,
+    long PunishmentValueDefault,
     long PunishmentValueLower,
     long PunishmentValueUpper,
     short PunishmentPercentChance);

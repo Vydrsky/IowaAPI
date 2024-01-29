@@ -10,23 +10,26 @@ public sealed class Round : Entity<RoundId>
     public long PreviousBalance { get; private set; }
     public long Total { get; private set; }
     public CardType CardChosen { get ; private set; }
+    public bool Won {  get; private set; }
 
-    private Round(RoundId id, long previousBalance, long total, short roundNumber, CardType cardChosen) : base(id)
+    private Round(RoundId id, long previousBalance, long total, short roundNumber, CardType cardChosen, bool won) : base(id)
     {
         PreviousBalance = previousBalance;
         Total = total;
         RoundNumber = roundNumber;
         CardChosen = cardChosen;
+        Won = won;
     }
 
-    public static Round Create(long previousBalance, long total, short roundNumber, CardType cardChosen)
+    public static Round Create(long previousBalance, long total, short roundNumber, CardType cardChosen, bool won)
     {
         return new(
             RoundId.CreateUnique(),
             previousBalance,
             total,
             roundNumber,
-            cardChosen);
+            cardChosen,
+            won);
     }
 
 #pragma warning disable CS8618
