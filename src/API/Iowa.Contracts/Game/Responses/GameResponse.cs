@@ -14,6 +14,7 @@ public record RoundResponse(
     short RoundNumber,
     long PreviousBalance,
     long Total,
+    bool Won,
     CardType Type);
 
 public record CardResponse(
