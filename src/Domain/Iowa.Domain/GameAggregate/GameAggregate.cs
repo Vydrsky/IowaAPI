@@ -40,8 +40,11 @@ public sealed class GameAggregate : AggregateRoot<GameId>
 
     public bool AddNewRound(Round round)
     {
-        _rounds.Add(round);
-        AddDomainEvent(new RoundAdded(round, AccountId));
+        if (_rounds.Count < DomainConstants.ROUND_LIMIT)
+        {
+            _rounds.Add(round);
+            AddDomainEvent(new RoundAdded(round, AccountId));
+        }
 
         if(_rounds.Count >= DomainConstants.ROUND_LIMIT)
         {
