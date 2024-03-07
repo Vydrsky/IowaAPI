@@ -2,4 +2,5 @@
 
 public record EvaluationSummaryRangeResult(
     string Name,
-    long AccountBalance);
+    long AccountBalance,
+    bool CurrentUser);

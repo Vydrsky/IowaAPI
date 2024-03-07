@@ -39,7 +39,7 @@ public class EvaluationController : IowaController
 
     [HttpGet("percent/{id}",Name = "GetEvaluationPercentAdvantage")]
     [ProducesResponseType(200)]
-    public async Task<ActionResult<short>> GetEvaluationPercentAdvantage([FromRoute] Guid id)
+    public async Task<ActionResult<EvaluationPercentAdvantageResponse>> GetEvaluationPercentAdvantage([FromRoute] Guid id)
     {
         var result = await _mediator.Send(new GetEvaluationPercentAdvantageQuery(id));
         return Ok(new EvaluationPercentAdvantageResponse(result));

@@ -42,15 +42,17 @@ public class GetEvaluationSummaryRangeQueryHandler : IRequestHandler<GetEvaluati
             .Select(a => 
             new EvaluationSummaryRangeResult(
                 users.FirstOrDefault(u => u.Id == a.UserId)?.UserCode ?? throw new EntityNotFoundException(),
-                a.Balance));
+                a.Balance,
+                false));
 
         var lowerEvalResults = lowerEvalAccounts
             .Select(a => 
             new EvaluationSummaryRangeResult(
                 users.FirstOrDefault(u => u.Id == a.UserId)?.UserCode ?? throw new EntityNotFoundException(),
-                a.Balance));
+                a.Balance,
+                false));
 
-        var userResult = new EvaluationSummaryRangeResult(user.UserCode, userAccount.Balance);
+        var userResult = new EvaluationSummaryRangeResult(user.UserCode, userAccount.Balance, true);
 
         return higherEvalResults.ToList().Append(userResult).Concat(lowerEvalResults);
     }
