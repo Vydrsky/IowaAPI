@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Iowa.Contracts\Iowa.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+
 </Project>
